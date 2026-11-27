@@ -203,3 +203,75 @@ html,body{margin:0;min-width:0}
 #app.layout474 .tabs474 button{min-height:26px!important;font-size:13px!important}
 #app.layout474 .art474 .jia40{inset:9% 0 0 0!important}
 }
+
+/* v4.77: full-screen character RPG layout */
+#app.rpg477{display:flex!important;flex-direction:column;padding-top:env(safe-area-inset-top)!important}
+#app.rpg477 header{min-height:40px!important;padding:4px 10px!important;background:#32281eea!important}
+#app.rpg477 .stats477{display:flex;align-items:center;gap:8px;min-width:0;flex:1;justify-content:flex-end}
+#app.rpg477 .stats477 .meters40{position:static!important;display:grid!important;width:min(52vw,480px);background:transparent!important;color:#fff2d7;padding:0!important;gap:8px!important;flex:none}
+#app.rpg477 .stats477 .meter40 b,#app.rpg477 .stats477 .meter40 span{color:#fff2d7}
+#app.rpg477 .stats477 .meter40 i{background:#85735a!important;height:4px!important}
+#app.rpg477 .stats477 .wallet474{padding:3px 6px;gap:4px;border:0;background:transparent;white-space:nowrap;font-size:13px}
+#app.rpg477 .stats477 .wallet474 strong{font-size:16px!important}
+#app.rpg477 main,#app.rpg477.home43 main,#app.rpg477.detail475 main{grid-template-columns:minmax(0,46fr) minmax(0,54fr)!important;gap:8px!important;padding:5px 10px!important;flex:1 1 0!important;height:0!important;min-height:0!important}
+#app.rpg477 .left474,#app.rpg477 .right474{min-height:0;gap:0!important}
+#app.rpg477 .art474{height:100%;min-height:0;flex:1}
+#app.rpg477 .art474 .jia40{inset:0!important}
+#app.rpg477 .art474 .jia40 img{object-fit:contain!important;object-position:center bottom!important}
+#app.rpg477 .art474 .heroLabel40{left:4%;bottom:2%;right:4%;max-width:none;width:auto;padding:8px 12px!important;background:#f5e7d0e8!important;color:#3b2b20!important;border:1px solid #b89a5d;border-radius:6px;box-shadow:0 2px 8px #0003}
+#app.rpg477 .art474 .heroLabel40 h1,#app.rpg477 .art474 .heroLabel40 p,#app.rpg477 .art474 .heroLabel40 small,#app.rpg477.journal451 .art474 .heroLabel40 h1,#app.rpg477.journal451 .art474 .heroLabel40 small{color:#392b20!important}
+#app.rpg477 .art474 .heroLabel40 h1{font-size:19px!important;margin:0 0 3px}
+#app.rpg477 .line477{font-size:15px;margin:0 0 3px;line-height:1.35}
+#app.rpg477 .panel474{height:100%;min-height:0;padding:8px!important;background:#f2e2c8ed;border-radius:6px!important}
+#app.rpg477.home477 .panel474{background:transparent!important;padding:0!important}
+#app.rpg477 .cards477{height:100%;min-height:0;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));grid-template-rows:repeat(2,minmax(0,1fr));gap:8px}
+#app.rpg477 .cards477 button.tile477{position:relative;overflow:hidden;min-width:0;min-height:0!important;height:100%;padding:0!important;border:2px solid #d5bd8b!important;border-radius:8px!important;background:#4c3929!important;box-shadow:0 2px 5px #0005!important}
+#app.rpg477 .cards477 .tile477 img{width:100%;height:100%;object-fit:cover;display:block}
+#app.rpg477 .cards477 .name477{position:absolute;bottom:0;left:0;right:0;display:block;padding:8px 4px;background:#f2e2c8ec;color:#35271d;font-size:18px;font-weight:750;text-align:center}
+#app.rpg477 .cards477 .sub477{position:absolute;top:6px;right:6px;padding:3px 6px;background:#33291de8;color:#fff2d7!important;font-size:12px;border-radius:4px}
+#app.rpg477 .dock477{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:4px;flex:none;padding:3px 10px;background:#362a20;border-top:1px solid #c6aa77;min-height:48px;z-index:10}
+#app.rpg477 .dock477 button.tile477{display:flex;justify-content:center;align-items:center;gap:5px;min-width:0;min-height:40px;padding:3px!important;border:0!important;border-radius:4px!important;background:transparent!important;color:#fff1d5!important;font-size:14px;box-shadow:none!important}
+#app.rpg477 .dock477 button.selected477{background:#9c7943!important}
+#app.rpg477 .dock477 img{width:30px;height:30px;object-fit:contain;flex:none}
+#app.rpg477 .heading477{display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid #c2aa7e;flex:none;padding-bottom:4px}
+#app.rpg477 .heading477 h2{margin:0!important;font-size:20px!important}
+#app.rpg477 .heading477 button{min-height:28px!important;font-size:14px;padding:2px 8px}
+#app.rpg477 .body474{padding:4px 2px!important}
+#app.rpg477 .quick477{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:4px;margin:0 0 6px}
+#app.rpg477 .quick477 button{border:1px solid #b89a5d!important;background:#e4cda0!important}
+#app.rpg477.planning477 .plan40{display:flex;flex-direction:column;gap:6px;min-height:0;flex:1;overflow:auto;padding:6px}
+#app.rpg477.planning477 .plan40>h2{display:none}
+#app.rpg477.planning477 .weeks40{display:grid;grid-template-columns:repeat(2,minmax(0,1fr))!important;gap:6px;margin:0}
+#app.rpg477.planning477 .weeks40 label{display:grid;gap:3px;padding:0;min-width:0}
+#app.rpg477.planning477 .activity43{display:block!important;width:100%;height:clamp(28px,12dvh,110px);aspect-ratio:auto;object-fit:cover;filter:none}
+#app.rpg477.planning477 .slot419{min-height:28px!important;font-size:14px!important;padding:3px}
+#app.rpg477.planning477 .plan40>.primary{margin-top:auto!important;min-height:36px!important;font-size:16px!important}
+#app.rpg477.planning477 .estimate41{margin:0!important;font-size:12px}
+#app.rpg477 nav[hidden]{display:none!important}
+@media(orientation:landscape) and (max-height:550px){
+#app.rpg477 header{min-height:33px!important;padding:2px 6px!important}
+#app.rpg477 .brand474 strong{font-size:18px!important}
+#app.rpg477 .brand474 small{font-size:10px!important}
+#app.rpg477 .brand474{gap:5px}
+#app.rpg477 .stats477{gap:4px}
+#app.rpg477 .stats477 .meters40{gap:4px!important;width:min(39vw,350px)}
+#app.rpg477 .stats477 .meter40,#app.rpg477 .stats477 .meter40 b{font-size:10px!important}
+#app.rpg477 .stats477 .wallet474{font-size:11px}
+#app.rpg477 .stats477 .wallet474 strong{font-size:13px!important}
+#app.rpg477 main,#app.rpg477.home43 main,#app.rpg477.detail475 main{gap:5px!important;padding:4px 6px!important}
+#app.rpg477 .cards477{gap:5px}
+#app.rpg477 .cards477 .name477{font-size:15px;padding:4px}
+#app.rpg477 .cards477 .sub477{font-size:10px;padding:2px 4px;top:3px;right:3px}
+#app.rpg477 .art474 .heroLabel40{padding:5px 8px!important}
+#app.rpg477 .art474 .heroLabel40 h1{font-size:16px!important}
+#app.rpg477 .line477{font-size:13px}
+#app.rpg477 .dock477{min-height:36px;padding:2px 6px;gap:2px}
+#app.rpg477 .dock477 button.tile477{min-height:32px;font-size:12px;gap:3px}
+#app.rpg477 .dock477 img{width:24px;height:24px}
+#app.rpg477 .heading477 h2{font-size:17px!important}
+#app.rpg477.planning477 .plan40{padding:3px;gap:3px}
+#app.rpg477.planning477 .weeks40{gap:3px}
+#app.rpg477.planning477 .activity43{height:clamp(22px,10dvh,55px)}
+#app.rpg477.planning477 .slot419{font-size:12px!important;min-height:24px!important}
+#app.rpg477.planning477 .plan40>.primary{min-height:28px!important;font-size:14px!important}
+}
