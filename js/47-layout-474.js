@@ -3,10 +3,13 @@
 const original=render;
 // Mood follows actual character condition, never the selected menu.
 jiaExpression=function(){try{if(!state)return 'neutral';const l=life34(),energy=init32().energy,stress=l.stats.스트레스??0;if(energy<35)return 'tired';if(stress>=80)return 'sad';if(state.dialogue?.kind==='intro')return 'happy';return 'neutral'}catch(e){return 'neutral'}};
+const rotate=document.createElement('div');rotate.id='rotate481';rotate.setAttribute('role','status');rotate.innerHTML='<div><svg width="56" height="56" viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="3"><rect x="20" y="7" width="25" height="49" rx="5" transform="rotate(90 32 32)"/><path d="M13 14A26 26 0 0 1 49 13l-1-9m1 9-9-1"/></svg><h2>가로 화면으로 돌려 주세요</h2><p>가로 화면에서 길의 등불을 즐길 수 있어요.</p></div>';document.body.append(rotate);
 function orientation475(){
- const rotated=matchMedia('(orientation: portrait)').matches && (matchMedia('(pointer: coarse)').matches || navigator.maxTouchPoints>0);
- document.documentElement.classList.toggle('autoLandscape478',rotated);
- const app=$('#app');if(app)app.inert=false;
+ document.documentElement.classList.remove('autoLandscape478');
+ const portrait=matchMedia('(orientation: portrait)').matches;
+ const touch=matchMedia('(pointer: coarse)').matches||navigator.maxTouchPoints>0;
+ rotate.hidden=!(portrait&&touch);
+ const app=$('#app');if(app)app.inert=!rotate.hidden;
 }
 window.addEventListener('resize',orientation475);window.addEventListener('orientationchange',orientation475);orientation475();
 
@@ -14,7 +17,7 @@ function element(tag,cls,html){const x=document.createElement(tag);x.className=c
 function action(label,fn,icon){const b=element('button','nav474');b.type='button';if(icon){const i=element('img','');i.src='assets/ui/'+icon+'.webp';i.alt='';b.append(i)}b.append(element('span','',label));b.onclick=fn;return b}
 function panelTabs(){const t=element('div','tabs474');for(const [label,fn] of [['의뢰',()=>quest419('open')],['이벤트',()=>go('이야기')],['마을',()=>go('외출')],['기타',()=>go('더보기')]]){const b=action(label,fn);if((label==='의뢰'&&['길드','의뢰'].includes(screen))||(label==='이벤트'&&screen==='이야기')||(label==='마을'&&['외출','마을 교류'].includes(screen))||(label==='기타'&&screen==='더보기'))b.classList.add('active474');t.append(b)}return t}
 function freshPlan(){const p=element('section','plan40');p.append(element('h2','','월간 일정'));const w=element('div','weeks40');life34().schedule.forEach((v,i)=>{const l=element('label','');const b=action(esc(v)+' ▾',()=>pickSlot419(i));b.className='slot419';const im=element('img','activity43');im.src=scenes30[lifeActivities40[v]?.[1]||'guild'];im.alt='';l.append(im,element('small','',(i+1)+'주'),b);w.append(l)});p.append(w);const b=action('이번 달 시작 ▸',()=>{go('길드');begin34()});b.className='primary wide';p.append(b);return p}
-render=function(){original();const app=$('#app'),m=$('main');if(!app)return;app.classList.remove('layout474','detail475'); if(!state){const v=app.querySelector('.title small');if(v)v.textContent='v4.80 · 길의 등불';} orientation475();if(!state||!m||batch34||state.dialogue||state.final437)return;
+render=function(){original();const app=$('#app'),m=$('main');if(!app)return;app.classList.remove('layout474','detail475'); if(!state){const v=app.querySelector('.title small');if(v)v.textContent='v4.81 · 길의 등불';} orientation475();if(!state||!m||batch34||state.dialogue||state.final437)return;
 const home=screen==='길드',l=life34(),stage=m.querySelector('.stage43'),controls=m.querySelector('.controls43');if(home&&(!stage||!controls))return;
 const hero=stage?.querySelector('.lifehero40'),oldMeters=stage?.querySelector('.meters40');const bg=hero?.querySelector('.scene30')?.getAttribute('src')||'assets/scenes/new-guild.webp';
 const art=element('div','art474');if(hero){const j=hero.querySelector('.jia40');if(j)art.append(j);const label=hero.querySelector('.heroLabel40');if(label)art.append(label)}else{art.innerHTML='<div class="jia40 standing45">'+portrait('지아 메르벨')+'</div><div class="heroLabel40"><h1>지아 메르벨</h1><span>'+esc(guildStage433())+'</span><small>남은 기간 '+Math.max(0,1200-Math.floor(state.time/1440))+'일</small></div>'}
@@ -132,4 +135,26 @@ render=function(){
  app.classList.add('full479');left.remove();
  const heading=m.querySelector('.heading477');if(heading){const duplicate=[...heading.querySelectorAll('button')].find(b=>b.textContent.trim()==='홈');duplicate?.remove()}
 };render();
+})();
+
+/* v4.81: measure artwork bounds instead of scaling transparent padding */
+(function(){
+const prev=render,cache=new Map();
+function fit(img,stage){
+ if(!img.naturalWidth||!stage.clientHeight)return;
+ let bounds=cache.get(img.currentSrc||img.src);
+ if(!bounds){
+  try{const c=document.createElement('canvas');c.width=160;c.height=Math.max(1,Math.round(160*img.naturalHeight/img.naturalWidth));const ctx=c.getContext('2d',{willReadFrequently:true});ctx.drawImage(img,0,0,c.width,c.height);const data=ctx.getImageData(0,0,c.width,c.height).data;let x0=c.width,y0=c.height,x1=-1,y1=-1;for(let y=0;y<c.height;y++)for(let x=0;x<c.width;x++){if(data[(y*c.width+x)*4+3]>45){x0=Math.min(x0,x);x1=Math.max(x1,x);y0=Math.min(y0,y);y1=Math.max(y1,y)}}if(x1>=0)bounds={x0:x0/c.width,x1:(x1+1)/c.width,y0:y0/c.height,y1:(y1+1)/c.height};}catch(e){}
+  bounds=bounds||{x0:0,x1:1,y0:0,y1:1};cache.set(img.currentSrc||img.src,bounds);
+ }
+ const H=stage.clientHeight,W=stage.clientWidth,visibleH=Math.max(.1,bounds.y1-bounds.y0),visibleW=Math.max(.1,bounds.x1-bounds.x0);
+ const cropped=(img.naturalWidth/img.naturalHeight)*(visibleW/visibleH)>.85;
+ const artHeight=H*(cropped?1.05:1.65)/visibleH;
+ const artWidth=artHeight*img.naturalWidth/img.naturalHeight;
+ img.style.setProperty('height',artHeight+'px','important');img.style.setProperty('width',artWidth+'px','important');
+ img.style.setProperty('top',(H*.025-artHeight*bounds.y0)+'px','important');
+ img.style.setProperty('left',(W/2-artWidth*(bounds.x0+bounds.x1)/2)+'px','important');img.style.setProperty('transform','none','important');
+}
+function refresh(){const stage=document.querySelector('#app.talk479 .vnStage422'),img=stage?.querySelector('.dialogue-art img');if(!img)return;const run=()=>fit(img,stage);if(img.complete)requestAnimationFrame(run);else img.addEventListener('load',()=>requestAnimationFrame(run),{once:true});}
+render=function(){prev();refresh()};window.addEventListener('resize',refresh);render();
 })();
