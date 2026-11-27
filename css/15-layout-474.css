@@ -275,3 +275,50 @@ html,body{margin:0;min-width:0}
 #app.rpg477.planning477 .slot419{font-size:12px!important;min-height:24px!important}
 #app.rpg477.planning477 .plan40>.primary{min-height:28px!important;font-size:14px!important}
 }
+
+/* v4.78: visual landscape on portrait touch browsers */
+html.autoLandscape478,html.autoLandscape478 body{overflow:hidden!important;overscroll-behavior:none;margin:0!important;padding:0!important}
+html.autoLandscape478 body{position:fixed!important;left:0;top:0;width:100dvh!important;height:100dvw!important;min-height:0!important;transform-origin:0 0;transform:translateX(100dvw) rotate(90deg);background:#30241b}
+html.autoLandscape478 #app{width:100%!important;max-width:100%!important;height:100%!important;max-height:100%!important;min-height:0!important;margin:0!important;padding:0!important;overflow:hidden!important}
+html.autoLandscape478 #app.layout474 main,html.autoLandscape478 #app.rpg477 main{grid-template-columns:minmax(0,46fr) minmax(0,54fr)!important;grid-template-rows:minmax(0,1fr)!important;flex:1 1 0!important;height:0!important;min-height:0!important;max-height:none!important}
+html.autoLandscape478 #app.layout474 .brand474{display:flex;align-items:center}
+html.autoLandscape478 #app .title{min-height:100%!important;height:100%!important;padding:8px!important;gap:5px;overflow:auto}
+html.autoLandscape478 #app .title button{min-height:32px;margin:2px auto}
+html.autoLandscape478 #app:not(.layout474) main{max-height:calc(100dvw - 44px);overflow:auto}
+html.autoLandscape478 #app .dialogue-art .portrait{height:32dvw!important}
+html.autoLandscape478 #app .result19{position:absolute!important;max-height:70dvw!important;width:min(92%,460px)!important}
+html.autoLandscape478 dialog[open]{position:fixed!important;inset:auto!important;left:50%!important;top:50%!important;margin:0!important;transform:translate(-50%,-50%) rotate(90deg)!important;transform-origin:center!important;width:min(92dvh,850px)!important;max-width:92dvh!important;max-height:90dvw!important;overflow:auto!important}
+html.autoLandscape478 dialog[open] .cg423,html.autoLandscape478 dialog[open] .contestCG430{max-height:35dvw!important}
+html.autoLandscape478 #rotate475{display:none!important}
+@media (orientation:portrait) and (max-width:550px){
+
+html.autoLandscape478 #app.rpg477 header{min-height:33px!important;padding:2px 6px!important}
+html.autoLandscape478 #app.rpg477 .brand474 strong{font-size:18px!important}
+html.autoLandscape478 #app.rpg477 .brand474 small{font-size:10px!important}
+html.autoLandscape478 #app.rpg477 .brand474{gap:5px}
+html.autoLandscape478 #app.rpg477 .stats477{gap:4px}
+html.autoLandscape478 #app.rpg477 .stats477 .meters40{gap:4px!important;width:min(39vh,350px)}
+html.autoLandscape478 #app.rpg477 .stats477 .meter40,html.autoLandscape478 #app.rpg477 .stats477 .meter40 b{font-size:10px!important}
+html.autoLandscape478 #app.rpg477 .stats477 .wallet474{font-size:11px}
+html.autoLandscape478 #app.rpg477 .stats477 .wallet474 strong{font-size:13px!important}
+html.autoLandscape478 #app.rpg477 main,html.autoLandscape478 #app.rpg477.home43 main,html.autoLandscape478 #app.rpg477.detail475 main{gap:5px!important;padding:4px 6px!important}
+html.autoLandscape478 #app.rpg477 .cards477{gap:5px}
+html.autoLandscape478 #app.rpg477 .cards477 .name477{font-size:15px;padding:4px}
+html.autoLandscape478 #app.rpg477 .cards477 .sub477{font-size:10px;padding:2px 4px;top:3px;right:3px}
+html.autoLandscape478 #app.rpg477 .art474 .heroLabel40{padding:5px 8px!important}
+html.autoLandscape478 #app.rpg477 .art474 .heroLabel40 h1{font-size:16px!important}
+html.autoLandscape478 #app.rpg477 .line477{font-size:13px}
+html.autoLandscape478 #app.rpg477 .dock477{min-height:36px;padding:2px 6px;gap:2px}
+html.autoLandscape478 #app.rpg477 .dock477 button.tile477{min-height:32px;font-size:12px;gap:3px}
+html.autoLandscape478 #app.rpg477 .dock477 img{width:24px;height:24px}
+html.autoLandscape478 #app.rpg477 .heading477 h2{font-size:17px!important}
+html.autoLandscape478 #app.rpg477.planning477 .plan40{padding:3px;gap:3px}
+html.autoLandscape478 #app.rpg477.planning477 .weeks40{gap:3px}
+html.autoLandscape478 #app.rpg477.planning477 .activity43{height:clamp(22px,10dvw,55px)}
+html.autoLandscape478 #app.rpg477.planning477 .slot419{font-size:12px!important;min-height:24px!important}
+html.autoLandscape478 #app.rpg477.planning477 .plan40>.primary{min-height:28px!important;font-size:14px!important}
+
+}
+html.autoLandscape478 #app.rpg477 .stats477 .meters40{width:min(39dvh,350px)!important}
+html.autoLandscape478 #app.rpg477.planning477 .activity43{height:clamp(22px,10dvw,55px)!important}
+html.autoLandscape478 #app.rpg477 .art474 .jia40{inset:0!important}
