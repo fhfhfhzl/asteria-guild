@@ -351,3 +351,17 @@ html.autoLandscape482 #app.talk479 .dialogue-text{padding:5px 10px!important}
 html.autoLandscape482 #app.talk479 .dialogue-text h2{font-size:16px!important}
 html.autoLandscape482 #app.talk479 .dialogue-text p{font-size:13px!important}
 html.autoLandscape482 #app.talk479 .choices479 button{font-size:12px!important;min-height:28px}
+
+/* v4.83 compact home caption and persistent conversation actions */
+#app.rpg477 .art474 .heroLabel40,#app.rpg477.journal451 .art474 .heroLabel40,html.autoLandscape482 #app.rpg477 .art474 .heroLabel40{position:absolute!important;left:3%!important;right:auto!important;bottom:2%!important;width:max-content!important;max-width:94%!important;height:auto!important;min-height:0!important;padding:4px 8px!important;display:flex!important;flex-direction:column!important;gap:1px!important;border-radius:4px!important;box-shadow:none!important;background:#f5e7d0dc!important}
+#app.rpg477 .art474 .heroLabel40 h1,#app.rpg477.journal451 .art474 .heroLabel40 h1{font-size:13px!important;line-height:1.2!important;margin:0!important;padding:0!important}
+#app.rpg477 .art474 .heroLabel40 .line477{font-size:11px!important;line-height:1.25!important;margin:0!important;padding:0!important}
+#app.rpg477 .art474 .heroLabel40 small,#app.rpg477.journal451 .art474 .heroLabel40 small{font-size:10px!important;line-height:1.2!important;margin:0!important;padding:0!important}
+#app.talk479:not(.intro479) .dialogue-text{max-height:27%!important;min-height:0!important;height:auto!important;flex:0 1 auto!important;padding:5px 10px!important}
+#app.talk479:not(.intro479) .dialogue-text h2{font-size:14px!important;line-height:1.2!important;margin:0 0 3px!important}
+#app.talk479:not(.intro479) .dialogue-text p{font-size:12px!important;line-height:1.35!important;margin:0!important}
+#app.talk479 .talkActions483{position:relative!important;z-index:8!important;display:flex!important;justify-content:flex-end!important;align-items:center!important;gap:5px!important;width:min(96%,1100px)!important;align-self:center!important;flex:0 0 auto!important;padding:3px 5px!important;margin:0!important;background:#f3e5cf!important;border:1px solid #b89a5d;border-top:0;border-radius:0 0 4px 4px}
+#app.talk479 .talkActions483 button{display:inline-flex!important;align-items:center!important;justify-content:center!important;min-height:27px!important;height:auto!important;width:auto!important;padding:3px 10px!important;margin:0!important;font-size:12px!important;color:#392b20!important;background:#b9c5a9!important;border:1px solid #8d9a7e!important;border-radius:4px!important;white-space:nowrap!important}
+#app.talk479 .vnFooter427 button[hidden]{display:none!important}
+#app.talk479 .vnFooter427:has(>button[hidden]):not(:has(>button:not([hidden]))):not(:has(>select:not([hidden]))){display:none!important}
+#app.talk479 .choices479{max-height:36%!important}
