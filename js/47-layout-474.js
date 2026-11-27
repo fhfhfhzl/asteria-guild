@@ -29,3 +29,21 @@ const h=app.querySelector('header');if(h){const e=h.querySelector('.eyebrow');if
 const version=app.querySelector('.title small');if(version)version.textContent='v4.74 · 길의 등불';
 };render();
 })();
+
+/* v4.75: readable mission reports and wider landscape play */
+(function(){
+ const previousFinish=finish;
+ finish=function(q){const before=queue19.length;previousFinish(q);for(const item of queue19.slice(before)){if(item.name!==q.name)continue;item.questId=q.id;item.report=(q.report||[]).slice(-5).map(x=>x.text);if(q.status==='success'&&!q.trade)item.text='성공 · 길드 수수료 '+money(Math.floor(q.reward*(q.feeAtDispatch??state.fee)/100));else if(q.status==='failed')item.text='실패 · 예치금 반환';}};
+ const previousIssue=issue;
+ issue=function(q,t,urgent=false){const before=queue19.length;previousIssue(q,t,urgent);if(urgent)for(const item of queue19.slice(before)){item.questId=q.id;item.report=(q.report||[]).slice(-4).map(x=>x.text)}};
+ function labelMood(p){if(!p)return '';const morale=p.social?.morale??p.morale??60;let reasons=[];if(p.arrears>0)reasons.push('급여 체불');if((p.hp??100)<65)reasons.push('부상·건강 저하');if((p.fatigue??0)>=65)reasons.push('피로 누적');if(morale<35){reasons.push('사기 '+Math.round(morale)+'/100');if(state.facility<20)reasons.push('시설 상태 저하');}return reasons.join(' · ')}
+ const previous=render;
+ render=function(){previous();const app=$('#app');if(!app)return;app.classList.toggle('detail475',!!state&&screen!=='길드'&&!state.dialogue&&!state.final437);if(!state)return;
+ const box=app.querySelector('.result19');if(box){const rows=box.querySelectorAll('.resultRow472');rows.forEach((row,i)=>{const x=resultsVisible472[i];if(!x)return;const q=state.quests.find(q=>q.id===x.questId)||[...state.quests].reverse().find(q=>q.name===x.name&&['success','failed','missing','delayed'].includes(q.status));const lines=x.report||q?.report?.slice(-5).map(r=>r.text)||[];if(lines.length){const detail=document.createElement('div');detail.className='reason475';detail.textContent=lines.join(' / ');row.append(detail)}if(q?.status==='failed'){const p=document.createElement('small');p.className='reason475';p.textContent='의뢰 실패로 참여 모험가의 사기가 감소할 수 있습니다.';row.append(p)}})}
+ const d=state.dialogue;if(d){const p=state.economy?.staff?.find(p=>p.name===d.name)||state.people.find(p=>p.name===d.name);const reason=labelMood(p);const art=app.querySelector('.dialogue-art');if(reason&&art){const s=document.createElement('div');s.className='mood475';s.textContent=reason;art.append(s)}}
+ app.querySelectorAll('.staff419 section').forEach((el,i)=>{const reason=labelMood(state.economy?.staff?.[i+1]);if(reason){const s=document.createElement('small');s.className='mood475';s.textContent=reason;el.querySelector('div')?.append(s)}});
+ };render();
+ const rotate=document.createElement('div');rotate.id='rotate475';rotate.innerHTML='<div><svg viewBox="0 0 48 48" width="62" height="62" fill="none" stroke="currentColor" stroke-width="2"><rect x="6" y="13" width="36" height="22" rx="4"/><path d="M17 6a19 19 0 0 1 24 5M41 4v7h-7M31 42a19 19 0 0 1-24-5M7 44v-7h7"/></svg><h2>가로 화면으로 돌려 주세요</h2><p>길의 등불은 가로 화면 전용입니다.</p><button type="button">가로 화면 시작</button></div>';document.body.append(rotate);
+ rotate.querySelector('button').addEventListener('click',async()=>{try{if(!document.fullscreenElement&&document.documentElement.requestFullscreen)await document.documentElement.requestFullscreen();await screenOrientationLock()}catch(e){rotate.querySelector('p').textContent='기기의 화면 회전 잠금을 해제하고 가로로 돌려 주세요.'}});
+ async function screenOrientationLock(){if(window.screen.orientation?.lock)await window.screen.orientation.lock('landscape')}
+})();
