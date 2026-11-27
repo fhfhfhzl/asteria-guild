@@ -325,13 +325,29 @@ html,body{margin:0;min-width:0}
 #app.talk479 .vnFooter427 select[hidden]{display:none!important}
 
 /* v4.81: actual landscape viewport, independent dialogue sprite canvas */
-#rotate481[hidden]{display:none!important}
-#rotate481{position:fixed;inset:0;z-index:2147483647;background:#30251e;color:#f2e2c6;display:grid;place-items:center;text-align:center;padding:24px}
-#rotate481 h2{font-size:20px;margin:14px 0 8px;color:inherit}
-#rotate481 p{font-size:14px;color:inherit;margin:0}
 #app.talk479 .vnStage422{position:relative!important;flex:1 1 0!important;min-height:0!important;height:100%!important;width:100%!important;overflow:hidden!important;isolation:isolate}
 #app.talk479 .dialogue-art,#app.talk479.intro479 .intro-staff-art{position:absolute!important;inset:0!important;display:block!important;flex:none!important;width:100%!important;height:100%!important;min-width:0!important;min-height:0!important;max-height:none!important;overflow:hidden!important;transform:none!important}
 #app.talk479 .dialogue-art .portrait,#app.talk479.intro479 .intro-staff-art .portrait{position:absolute!important;inset:0!important;display:block!important;width:100%!important;height:100%!important;min-height:0!important;max-width:none!important;max-height:none!important;aspect-ratio:auto!important;overflow:hidden!important;transform:none!important}
 #app.talk479 .dialogue-art .portrait img,#app.talk479.intro479 .intro-staff-art .portrait img,#app.talk479 .dialogue-art.wideSprite479 .portrait img{position:absolute!important;display:block!important;top:2%!important;left:50%!important;right:auto!important;bottom:auto!important;width:auto!important;height:var(--spriteHeight481,220%)!important;min-height:0!important;max-height:none!important;max-width:none!important;aspect-ratio:auto!important;transform:translateX(-50%)!important;object-fit:contain!important;object-position:top center!important;animation:none!important}
 #app.talk479 .dialogue-art.wideSprite479{--spriteHeight481:120%}
 #app.talk479 .dialogue-text{position:relative!important;z-index:5!important;margin:0!important;flex:none!important;max-height:35%!important}
+
+/* v4.82: auto landscape, without blocking portrait access */
+html.autoLandscape482,html.autoLandscape482 body{overflow:hidden!important;overscroll-behavior:none;margin:0!important;padding:0!important}
+html.autoLandscape482 body{position:fixed!important;inset:0 auto auto 0!important;width:100dvh!important;height:100dvw!important;min-height:0!important;transform-origin:0 0;transform:translateX(100dvw) rotate(90deg)}
+html.autoLandscape482 #app{width:100%!important;max-width:100%!important;height:100%!important;max-height:100%!important;min-height:0!important;margin:0!important;padding:0!important;overflow:hidden!important}
+html.autoLandscape482 #app.layout474 main{grid-template-columns:minmax(0,46fr) minmax(0,54fr)!important;grid-template-rows:minmax(0,1fr)!important;flex:1 1 0!important;height:0!important;min-height:0!important;max-height:none!important}
+html.autoLandscape482 #app.rpg477.full479 main{grid-template-columns:minmax(0,1fr)!important}
+html.autoLandscape482 #app .title{min-height:100%!important;height:100%!important;padding:8px!important;gap:5px;overflow:auto}
+html.autoLandscape482 #app .title button{min-height:32px;margin:2px auto}
+html.autoLandscape482 #app:not(.layout474):not(.talk479) main{max-height:calc(100dvw - 44px);overflow:auto}
+html.autoLandscape482 #app.talk479 main{display:flex!important;flex:1 1 0!important;height:0!important;max-height:none!important;min-height:0!important}
+html.autoLandscape482 #app.talk479 .vnStage422{height:100%!important;min-height:0!important}
+html.autoLandscape482 #app .result19{position:absolute!important;max-height:70dvw!important;width:min(92%,460px)!important}
+html.autoLandscape482 dialog[open]{position:fixed!important;inset:auto!important;left:50%!important;top:50%!important;margin:0!important;transform:translate(-50%,-50%) rotate(90deg)!important;transform-origin:center!important;width:min(92dvh,850px)!important;max-width:92dvh!important;max-height:90dvw!important;overflow:auto!important}
+html.autoLandscape482 #app.rpg477 .stats477 .meters40{width:min(39dvh,350px)!important}
+html.autoLandscape482 #app.rpg477.full479.planning477 .activity43{height:clamp(45px,23dvw,120px)!important}
+html.autoLandscape482 #app.talk479 .dialogue-text{padding:5px 10px!important}
+html.autoLandscape482 #app.talk479 .dialogue-text h2{font-size:16px!important}
+html.autoLandscape482 #app.talk479 .dialogue-text p{font-size:13px!important}
+html.autoLandscape482 #app.talk479 .choices479 button{font-size:12px!important;min-height:28px}

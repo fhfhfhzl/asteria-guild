@@ -3,13 +3,10 @@
 const original=render;
 // Mood follows actual character condition, never the selected menu.
 jiaExpression=function(){try{if(!state)return 'neutral';const l=life34(),energy=init32().energy,stress=l.stats.스트레스??0;if(energy<35)return 'tired';if(stress>=80)return 'sad';if(state.dialogue?.kind==='intro')return 'happy';return 'neutral'}catch(e){return 'neutral'}};
-const rotate=document.createElement('div');rotate.id='rotate481';rotate.setAttribute('role','status');rotate.innerHTML='<div><svg width="56" height="56" viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="3"><rect x="20" y="7" width="25" height="49" rx="5" transform="rotate(90 32 32)"/><path d="M13 14A26 26 0 0 1 49 13l-1-9m1 9-9-1"/></svg><h2>가로 화면으로 돌려 주세요</h2><p>가로 화면에서 길의 등불을 즐길 수 있어요.</p></div>';document.body.append(rotate);
 function orientation475(){
- document.documentElement.classList.remove('autoLandscape478');
- const portrait=matchMedia('(orientation: portrait)').matches;
- const touch=matchMedia('(pointer: coarse)').matches||navigator.maxTouchPoints>0;
- rotate.hidden=!(portrait&&touch);
- const app=$('#app');if(app)app.inert=!rotate.hidden;
+ const rotated=matchMedia('(orientation: portrait)').matches&&(matchMedia('(pointer: coarse)').matches||navigator.maxTouchPoints>0);
+ document.documentElement.classList.toggle('autoLandscape482',rotated);
+ const app=$('#app');if(app)app.inert=false;
 }
 window.addEventListener('resize',orientation475);window.addEventListener('orientationchange',orientation475);orientation475();
 
@@ -17,7 +14,7 @@ function element(tag,cls,html){const x=document.createElement(tag);x.className=c
 function action(label,fn,icon){const b=element('button','nav474');b.type='button';if(icon){const i=element('img','');i.src='assets/ui/'+icon+'.webp';i.alt='';b.append(i)}b.append(element('span','',label));b.onclick=fn;return b}
 function panelTabs(){const t=element('div','tabs474');for(const [label,fn] of [['의뢰',()=>quest419('open')],['이벤트',()=>go('이야기')],['마을',()=>go('외출')],['기타',()=>go('더보기')]]){const b=action(label,fn);if((label==='의뢰'&&['길드','의뢰'].includes(screen))||(label==='이벤트'&&screen==='이야기')||(label==='마을'&&['외출','마을 교류'].includes(screen))||(label==='기타'&&screen==='더보기'))b.classList.add('active474');t.append(b)}return t}
 function freshPlan(){const p=element('section','plan40');p.append(element('h2','','월간 일정'));const w=element('div','weeks40');life34().schedule.forEach((v,i)=>{const l=element('label','');const b=action(esc(v)+' ▾',()=>pickSlot419(i));b.className='slot419';const im=element('img','activity43');im.src=scenes30[lifeActivities40[v]?.[1]||'guild'];im.alt='';l.append(im,element('small','',(i+1)+'주'),b);w.append(l)});p.append(w);const b=action('이번 달 시작 ▸',()=>{go('길드');begin34()});b.className='primary wide';p.append(b);return p}
-render=function(){original();const app=$('#app'),m=$('main');if(!app)return;app.classList.remove('layout474','detail475'); if(!state){const v=app.querySelector('.title small');if(v)v.textContent='v4.81 · 길의 등불';} orientation475();if(!state||!m||batch34||state.dialogue||state.final437)return;
+render=function(){original();const app=$('#app'),m=$('main');if(!app)return;app.classList.remove('layout474','detail475'); if(!state){const v=app.querySelector('.title small');if(v)v.textContent='v4.82 · 길의 등불';} orientation475();if(!state||!m||batch34||state.dialogue||state.final437)return;
 const home=screen==='길드',l=life34(),stage=m.querySelector('.stage43'),controls=m.querySelector('.controls43');if(home&&(!stage||!controls))return;
 const hero=stage?.querySelector('.lifehero40'),oldMeters=stage?.querySelector('.meters40');const bg=hero?.querySelector('.scene30')?.getAttribute('src')||'assets/scenes/new-guild.webp';
 const art=element('div','art474');if(hero){const j=hero.querySelector('.jia40');if(j)art.append(j);const label=hero.querySelector('.heroLabel40');if(label)art.append(label)}else{art.innerHTML='<div class="jia40 standing45">'+portrait('지아 메르벨')+'</div><div class="heroLabel40"><h1>지아 메르벨</h1><span>'+esc(guildStage433())+'</span><small>남은 기간 '+Math.max(0,1200-Math.floor(state.time/1440))+'일</small></div>'}
