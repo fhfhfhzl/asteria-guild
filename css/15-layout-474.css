@@ -365,3 +365,14 @@ html.autoLandscape478 #app.talk479 .dialogue-text{padding:5px 10px!important}
 html.autoLandscape478 #app.talk479 .dialogue-text h2{font-size:16px!important}
 html.autoLandscape478 #app.talk479 .dialogue-text p{font-size:13px!important}
 html.autoLandscape478 #app.talk479 .choices479 button{font-size:12px!important;min-height:28px}
+
+/* v4.80: anchored half-body sprites and compact random topic choices */
+#app.talk479 .vnStage422{padding:0 12px 0!important;justify-content:flex-end!important}
+#app.talk479 .dialogue-art{inset:0!important;height:100%!important;max-height:none!important;min-height:0!important}
+#app.talk479 .dialogue-art .portrait{inset:0!important;height:100%!important;max-height:none!important;min-height:0!important}
+#app.talk479 .dialogue-art .portrait img,#app.talk479.intro479 .dialogue-art .portrait img{position:absolute!important;top:1%!important;bottom:auto!important;left:50%!important;width:auto!important;height:245%!important;min-height:245%!important;max-height:none!important;max-width:none!important;transform:translateX(-50%)!important;object-fit:contain!important;object-position:center top!important}
+#app.talk479 .dialogue-art.wideSprite479 .portrait img,#app.talk479.intro479 .dialogue-art.wideSprite479 .portrait img{height:145%!important;min-height:145%!important;top:0!important}
+#app.talk479 .dialogue-text{margin:0!important;width:min(96%,1100px)!important;max-height:36%!important;border-radius:6px 6px 0 0!important;flex-shrink:0!important}
+#app.talk479 .choices479{margin:0 1% 4px 0!important;width:min(36%,420px);max-height:43%;flex-shrink:0}
+#app.talk479 .choices479 button{min-height:30px;line-height:1.35}
+#app.talk479 .vnFooter427 select[hidden]{display:none!important}

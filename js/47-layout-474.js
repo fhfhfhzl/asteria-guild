@@ -14,7 +14,7 @@ function element(tag,cls,html){const x=document.createElement(tag);x.className=c
 function action(label,fn,icon){const b=element('button','nav474');b.type='button';if(icon){const i=element('img','');i.src='assets/ui/'+icon+'.webp';i.alt='';b.append(i)}b.append(element('span','',label));b.onclick=fn;return b}
 function panelTabs(){const t=element('div','tabs474');for(const [label,fn] of [['의뢰',()=>quest419('open')],['이벤트',()=>go('이야기')],['마을',()=>go('외출')],['기타',()=>go('더보기')]]){const b=action(label,fn);if((label==='의뢰'&&['길드','의뢰'].includes(screen))||(label==='이벤트'&&screen==='이야기')||(label==='마을'&&['외출','마을 교류'].includes(screen))||(label==='기타'&&screen==='더보기'))b.classList.add('active474');t.append(b)}return t}
 function freshPlan(){const p=element('section','plan40');p.append(element('h2','','월간 일정'));const w=element('div','weeks40');life34().schedule.forEach((v,i)=>{const l=element('label','');const b=action(esc(v)+' ▾',()=>pickSlot419(i));b.className='slot419';const im=element('img','activity43');im.src=scenes30[lifeActivities40[v]?.[1]||'guild'];im.alt='';l.append(im,element('small','',(i+1)+'주'),b);w.append(l)});p.append(w);const b=action('이번 달 시작 ▸',()=>{go('길드');begin34()});b.className='primary wide';p.append(b);return p}
-render=function(){original();const app=$('#app'),m=$('main');if(!app)return;app.classList.remove('layout474','detail475'); if(!state){const v=app.querySelector('.title small');if(v)v.textContent='v4.79 · 길의 등불';} orientation475();if(!state||!m||batch34||state.dialogue||state.final437)return;
+render=function(){original();const app=$('#app'),m=$('main');if(!app)return;app.classList.remove('layout474','detail475'); if(!state){const v=app.querySelector('.title small');if(v)v.textContent='v4.80 · 길의 등불';} orientation475();if(!state||!m||batch34||state.dialogue||state.final437)return;
 const home=screen==='길드',l=life34(),stage=m.querySelector('.stage43'),controls=m.querySelector('.controls43');if(home&&(!stage||!controls))return;
 const hero=stage?.querySelector('.lifehero40'),oldMeters=stage?.querySelector('.meters40');const bg=hero?.querySelector('.scene30')?.getAttribute('src')||'assets/scenes/new-guild.webp';
 const art=element('div','art474');if(hero){const j=hero.querySelector('.jia40');if(j)art.append(j);const label=hero.querySelector('.heroLabel40');if(label)art.append(label)}else{art.innerHTML='<div class="jia40 standing45">'+portrait('지아 메르벨')+'</div><div class="heroLabel40"><h1>지아 메르벨</h1><span>'+esc(guildStage433())+'</span><small>남은 기간 '+Math.max(0,1200-Math.floor(state.time/1440))+'일</small></div>'}
@@ -98,8 +98,10 @@ render=function(){
 /* v4.79: home-only Jia; full content and visual-novel dialogue */
 (function(){
 const previous=render;
+let lastTalk480=null, topics480=[];
 render=function(){
  previous();const app=$('#app');if(!app)return;
+ if(!state?.dialogue){lastTalk480=null;topics480=[]}
  app.classList.remove('full479','talk479','intro479');
  if(!state||batch34||state.final437)return;
  if(state.dialogue){
@@ -111,8 +113,14 @@ render=function(){
    const footer=speech.querySelector('.vnFooter427'),choices=document.createElement('div');choices.className='choices479';
    for(const select of [...(footer?.querySelectorAll('select')||[])]){
     const group=document.createElement('div');group.className='choiceGroup479';group.setAttribute('aria-label',select.getAttribute('aria-label')||'대화 선택');
-    for(const opt of [...select.options]){if(!opt.value||opt.disabled)continue;const b=document.createElement('button');b.type='button';b.textContent=opt.textContent;b.onclick=()=>{select.value=opt.value;select.dispatchEvent(new Event('change',{bubbles:true}))};group.append(b)}
-    if(group.children.length){choices.append(group);select.hidden=true}
+    let options=[...select.options].filter(opt=>opt.value&&!opt.disabled);
+    if(select.getAttribute('aria-label')==='대화 주제'){
+     const d=state.dialogue;
+     if(lastTalk480!==d){lastTalk480=d;topics480=[];for(const opt of options){topics480.push(opt.textContent)}for(let i=topics480.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[topics480[i],topics480[j]]=[topics480[j],topics480[i]]}topics480=topics480.slice(0,3)}
+     options=topics480.map(t=>options.find(o=>o.textContent===t)).filter(Boolean);
+    }
+    for(const opt of options.slice(0,Math.max(0,3-choices.querySelectorAll('button').length))){const b=document.createElement('button');b.type='button';b.textContent=opt.textContent;b.onclick=()=>{select.value=opt.value;select.dispatchEvent(new Event('change',{bubbles:true}))};group.append(b)}
+    if(group.children.length)choices.append(group);select.hidden=true;
    }
    if(choices.children.length)stage.insertBefore(choices,speech);
   }
