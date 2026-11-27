@@ -131,3 +131,75 @@ html,body{margin:0;min-width:0}
 #rotate475{display:none}
 @media(orientation:portrait){#rotate475{position:fixed;inset:0;z-index:2147483647;display:grid;place-items:center;text-align:center;background:#30241b;color:#fff4df;padding:24px;font-family:SUIT,system-ui,sans-serif}#rotate475 h2{color:#fff4df;font-size:24px;margin:12px 0}#rotate475 p{color:#e7d3ac;font-size:16px}#rotate475 button{margin-top:14px;background:#526b36!important;color:white!important;padding:12px 25px;border:1px solid #b89a5d!important;border-radius:8px!important;font-size:16px}}
 @media(orientation:landscape) and (max-height:550px){#app.layout474 header{min-height:38px;padding:2px 8px!important}#app.layout474 .brand474 strong{font-size:22px}#app.layout474 main{padding:4px!important;gap:5px!important}#app.layout474 .navGrid474 button{height:48px;min-height:48px}#app.layout474 .navGrid474 img{height:70%!important}#app.layout474 .navGrid474 span{font-size:12px!important}#app.layout474 .wallet474{padding:1px 8px}#app.layout474 .wallet474 strong{font-size:15px}#app.layout474 .tabs474 button{min-height:30px;font-size:14px}#app.layout474 .schedule474 .activity43{aspect-ratio:3.5;max-height:35px}#app.layout474 .schedule474 .slot419{min-height:28px;font-size:12px}#app.layout474 .schedule474 h2{font-size:15px!important}#app.layout474 .schedule474 .estimate41{display:none}#app.layout474.detail475 .schedule474 .weeks40{grid-template-columns:repeat(4,minmax(0,1fr))}#app.layout474.detail475 .navGrid474 button{height:42px;min-height:42px}}
+
+/* v4.76: compact UI, full-size Jia, viewport-filling game */
+#app.layout474{padding:0!important;padding-left:env(safe-area-inset-left)!important;padding-right:env(safe-area-inset-right)!important;padding-bottom:env(safe-area-inset-bottom)!important;box-shadow:none!important;height:100dvh!important;min-height:0!important;max-height:100dvh!important}
+#app.layout474 header{min-height:40px!important;padding:3px 9px!important;border-bottom-width:1px}
+#app.layout474 header .eyebrow{gap:6px}
+#app.layout474 #notice:empty{display:none!important;min-height:0}
+#app.layout474 #notice:not(:empty){position:absolute;top:100%;right:8px;max-width:60%;z-index:15;background:#3b2b20eb;color:#fff4df!important;border-radius:3px;padding:4px 8px;pointer-events:none;font-size:13px;min-height:0}
+#app.layout474 .brand474{gap:9px}
+#app.layout474 .brand474 strong{font-size:23px!important}
+#app.layout474 .brand474 small{font-size:13px!important}
+#app.layout474 .header474{gap:4px;align-items:center}
+#app.layout474 .header474 button{min-height:30px!important;padding:3px 9px!important;font-size:14px!important;background:transparent!important;border:0!important;border-radius:3px!important}
+#app.layout474 .header474 .wallet474{align-self:center;gap:5px;padding:0 7px;border:0;background:transparent;white-space:nowrap}
+#app.layout474 .wallet474 strong{font-size:16px!important}
+#app.layout474 main,#app.layout474.home43 main,#app.layout474.detail475 main{flex:1 1 0!important;height:0!important;min-height:0!important;max-height:none!important;grid-template-columns:minmax(0,46fr) minmax(0,54fr)!important;grid-template-rows:minmax(0,1fr)!important;align-items:stretch!important;align-content:stretch!important;padding:4px!important;gap:5px!important;border:0!important;border-radius:0!important;box-shadow:none!important}
+#app.layout474 .left474,#app.layout474 .right474{gap:4px!important;min-height:0}
+#app.layout474 .art474{flex:1 1 0;min-height:0}
+#app.layout474 .art474 .jia40{inset:6% 0 0 0!important}
+#app.layout474 .art474 .jia40 .portrait{aspect-ratio:auto!important;max-width:none!important;width:100%!important;height:100%!important}
+#app.layout474 .art474 .jia40 img{aspect-ratio:auto!important;max-width:none!important;width:100%!important;height:100%!important;object-fit:contain!important;object-position:center bottom!important}
+#app.layout474 .art474 .heroLabel40{padding:5px 15px 5px 6px!important}
+#app.layout474 .heroLabel40 h1{font-size:20px!important;margin:0}
+#app.layout474 .heroLabel40 small,#app.layout474 .heroLabel40 span{font-size:12px!important;margin:0}
+#app.layout474 .meters40{padding:3px 6px!important;gap:8px!important;border:0!important;border-radius:4px!important;background:#f5e7cee0;display:grid;grid-template-columns:repeat(3,minmax(0,1fr))}
+#app.layout474 .meter40,#app.layout474 .meter40 b{font-size:12px!important;line-height:1.2}
+#app.layout474 .meter40{gap:2px!important;padding:0!important}
+#app.layout474 .meter40 i{height:4px!important}
+#app.layout474 .navGrid474,#app.layout474.detail475 .navGrid474{grid-template-columns:repeat(5,minmax(0,1fr))!important;gap:3px!important}
+#app.layout474 .navGrid474 button,#app.layout474.detail475 .navGrid474 button{height:clamp(52px,9dvh,78px)!important;min-height:0!important;padding:0!important;border:0!important;border-radius:4px!important;background:#392b20a8!important}
+#app.layout474 .navGrid474 img{height:calc(100% - 8px)!important;width:95%!important;max-width:55px!important;object-fit:contain}
+#app.layout474 .navGrid474 span{font-size:14px!important;bottom:1px!important}
+#app.layout474 .panel474,#app.layout474 .schedule474{padding:4px!important;border:0!important;border-radius:5px!important;box-shadow:none!important}
+#app.layout474 .panel474{flex:1 1 0!important;min-height:0}
+#app.layout474 .tabs474{grid-template-columns:repeat(5,minmax(0,1fr));padding:0 0 3px;gap:2px}
+#app.layout474 .tabs474 button{min-height:30px!important;padding:2px 3px!important;font-size:14px!important;border-radius:3px!important}
+#app.layout474 .body474{padding:3px 4px!important;min-height:0;line-height:1.35;font-size:14px}
+#app.layout474 .body474 h2{font-size:19px!important;margin:3px 0 5px!important}
+#app.layout474 .body474 h3{font-size:16px!important;margin:3px 0!important}
+#app.layout474 .body474 p,#app.layout474 .body474 button,#app.layout474 .body474 select{font-size:14px!important}
+#app.layout474 .body474 small{font-size:12px!important}
+#app.layout474 .body474 button:not(.pin419):not(.invSlot459):not(.shopSlot459){min-height:30px;padding:3px 6px}
+#app.layout474 .body474 .card{padding:4px 0!important;margin:0 0 3px!important}
+#app.layout474 .body474 .row{gap:5px;margin:3px 0}
+#app.layout474 .body474 .quest23{min-height:40px!important;padding:4px!important}
+#app.layout474 .more476{align-self:flex-end;min-height:22px!important;padding:0 5px!important;font-size:12px!important}
+#app.layout474 .schedule474[hidden]{display:none!important}
+#app.layout474 .schedule474 .plan40{grid-template-columns:minmax(0,1fr) minmax(64px,17%);gap:2px 4px!important}
+#app.layout474 .schedule474 h2{font-size:16px!important;line-height:1.2;margin:0!important}
+#app.layout474 .schedule474 .weeks40{gap:3px!important}
+#app.layout474 .schedule474 .weeks40 label{gap:2px!important;padding:0!important}
+#app.layout474 .schedule474 .activity43{display:block!important;max-height:clamp(22px,6dvh,56px);aspect-ratio:3!important;border-radius:2px}
+#app.layout474 .schedule474 .weeks40 small{font-size:12px!important;line-height:1.1}
+#app.layout474 .schedule474 .slot419{min-height:26px!important;font-size:13px!important;padding:2px!important}
+#app.layout474 .schedule474 .plan40>.primary{font-size:14px!important;min-height:0!important;padding:3px!important;border-radius:4px!important}
+#app.layout474 .schedule474 .estimate41{display:block!important;font-size:11px!important;line-height:1.2;margin:0!important}
+@media(orientation:landscape) and (max-height:550px){
+#app.layout474 header{min-height:34px!important;padding:2px 5px!important}
+#app.layout474 .brand474 strong{font-size:19px!important}
+#app.layout474 .brand474 small{font-size:11px!important}
+#app.layout474 .header474 button{min-height:26px!important;font-size:12px!important;padding:2px 5px!important}
+#app.layout474 .header474 .wallet474{font-size:11px!important;padding:0 3px}
+#app.layout474 .wallet474 strong{font-size:14px!important}
+#app.layout474 .navGrid474 button,#app.layout474.detail475 .navGrid474 button{height:44px!important}
+#app.layout474 .navGrid474 img{max-width:43px!important}
+#app.layout474 .navGrid474 span{font-size:12px!important}
+#app.layout474 .schedule474 .activity43{max-height:22px}
+#app.layout474 .schedule474 .slot419{font-size:12px!important;min-height:24px!important}
+#app.layout474 .schedule474 h2{font-size:14px!important}
+#app.layout474 .schedule474 .weeks40 small{font-size:11px!important}
+#app.layout474 .tabs474 button{min-height:26px!important;font-size:13px!important}
+#app.layout474 .art474 .jia40{inset:9% 0 0 0!important}
+}

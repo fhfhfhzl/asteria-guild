@@ -12,7 +12,7 @@ function element(tag,cls,html){const x=document.createElement(tag);x.className=c
 function action(label,fn,icon){const b=element('button','nav474');b.type='button';if(icon){const i=element('img','');i.src='assets/ui/'+icon+'.webp';i.alt='';b.append(i)}b.append(element('span','',label));b.onclick=fn;return b}
 function panelTabs(){const t=element('div','tabs474');for(const [label,fn] of [['의뢰',()=>quest419('open')],['이벤트',()=>go('이야기')],['마을',()=>go('외출')],['기타',()=>go('더보기')]]){const b=action(label,fn);if((label==='의뢰'&&['길드','의뢰'].includes(screen))||(label==='이벤트'&&screen==='이야기')||(label==='마을'&&['외출','마을 교류'].includes(screen))||(label==='기타'&&screen==='더보기'))b.classList.add('active474');t.append(b)}return t}
 function freshPlan(){const p=element('section','plan40');p.append(element('h2','','월간 일정'));const w=element('div','weeks40');life34().schedule.forEach((v,i)=>{const l=element('label','');const b=action(esc(v)+' ▾',()=>pickSlot419(i));b.className='slot419';const im=element('img','activity43');im.src=scenes30[lifeActivities40[v]?.[1]||'guild'];im.alt='';l.append(im,element('small','',(i+1)+'주'),b);w.append(l)});p.append(w);const b=action('이번 달 시작 ▸',()=>{go('길드');begin34()});b.className='primary wide';p.append(b);return p}
-render=function(){original();const app=$('#app'),m=$('main');if(!app)return;app.classList.remove('layout474','detail475'); if(!state){const v=app.querySelector('.title small');if(v)v.textContent='v4.75 · 길의 등불';} orientation475();if(!state||!m||batch34||state.dialogue||state.final437)return;
+render=function(){original();const app=$('#app'),m=$('main');if(!app)return;app.classList.remove('layout474','detail475'); if(!state){const v=app.querySelector('.title small');if(v)v.textContent='v4.76 · 길의 등불';} orientation475();if(!state||!m||batch34||state.dialogue||state.final437)return;
 const home=screen==='길드',l=life34(),stage=m.querySelector('.stage43'),controls=m.querySelector('.controls43');if(home&&(!stage||!controls))return;
 const hero=stage?.querySelector('.lifehero40'),oldMeters=stage?.querySelector('.meters40');const bg=hero?.querySelector('.scene30')?.getAttribute('src')||'assets/scenes/new-guild.webp';
 const art=element('div','art474');if(hero){const j=hero.querySelector('.jia40');if(j)art.append(j);const label=hero.querySelector('.heroLabel40');if(label)art.append(label)}else{art.innerHTML='<div class="jia40 standing45">'+portrait('지아 메르벨')+'</div><div class="heroLabel40"><h1>지아 메르벨</h1><span>'+esc(guildStage433())+'</span><small>남은 기간 '+Math.max(0,1200-Math.floor(state.time/1440))+'일</small></div>'}
@@ -43,7 +43,16 @@ const version=app.querySelector('.title small');if(version)version.textContent='
  const d=state.dialogue;if(d){const p=state.economy?.staff?.find(p=>p.name===d.name)||state.people.find(p=>p.name===d.name);const reason=labelMood(p);const art=app.querySelector('.dialogue-art');if(reason&&art){const s=document.createElement('div');s.className='mood475';s.textContent=reason;art.append(s)}}
  app.querySelectorAll('.staff419 section').forEach((el,i)=>{const reason=labelMood(state.economy?.staff?.[i+1]);if(reason){const s=document.createElement('small');s.className='mood475';s.textContent=reason;el.querySelector('div')?.append(s)}});
  };render();
- const rotate=document.createElement('div');rotate.id='rotate475';rotate.innerHTML='<div><svg viewBox="0 0 48 48" width="62" height="62" fill="none" stroke="currentColor" stroke-width="2"><rect x="6" y="13" width="36" height="22" rx="4"/><path d="M17 6a19 19 0 0 1 24 5M41 4v7h-7M31 42a19 19 0 0 1-24-5M7 44v-7h7"/></svg><h2>가로 화면으로 돌려 주세요</h2><p>길의 등불은 가로 화면 전용입니다.</p><button type="button">가로 화면 시작</button></div>';document.body.append(rotate);
- rotate.querySelector('button').addEventListener('click',async()=>{try{if(!document.fullscreenElement&&document.documentElement.requestFullscreen)await document.documentElement.requestFullscreen();await screenOrientationLock()}catch(e){rotate.querySelector('p').textContent='기기의 화면 회전 잠금을 해제하고 가로로 돌려 주세요.'}});
- async function screenOrientationLock(){if(window.screen.orientation?.lock)await window.screen.orientation.lock('landscape')}
+})();
+
+/* v4.76: compact chrome, preserve character area */
+(function(){
+const previous=render;
+render=function(){previous();const app=$('#app');if(!app?.classList.contains('layout474')||!state)return;
+ const m=app.querySelector('main'),wallet=m?.querySelector('.wallet474'),header=app.querySelector('.header474');if(wallet&&header)header.prepend(wallet);
+ const art=m?.querySelector('.art474'),label=art?.querySelector('.heroLabel40');if(label&&!label.querySelector('small')){const s=document.createElement('small');s.textContent='남은 기간 '+Math.max(0,1200-Math.floor(state.time/1440))+'일';label.append(s)}
+ const tabs=m?.querySelector('.tabs474');if(tabs&&!tabs.querySelector('.home476')){const b=document.createElement('button');b.className='home476';b.type='button';b.textContent='길드';b.onclick=()=>go('길드');if(screen==='길드')b.classList.add('active474');tabs.prepend(b)}
+ const bottom=m?.querySelector('.schedule474');if(screen!=='길드'&&bottom&&!bottom.querySelector('.plan40'))bottom.hidden=true;
+ const extra=m?.querySelector('.extra474');if(extra){const b=document.createElement('button');b.type='button';b.className='more476';b.textContent='더보기';b.onclick=()=>{extra.hidden=!extra.hidden;b.setAttribute('aria-expanded',String(!extra.hidden))};b.setAttribute('aria-expanded','false');tabs?.after(b)}
+};render();
 })();
