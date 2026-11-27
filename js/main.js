@@ -45,7 +45,9 @@
   "js/41-inventory.js",
   "js/42-item-art.js",
   "js/43-outfit-scenes.js",
-  "js/44-event-cg.js"
+  "js/44-event-cg.js",
+  "js/45-visual-fix.js",
+  "js/46-refined-ui.js"
 ];
   try {
     const dataNames = ["characters","staff-dialogues","monsters","shop-items","hero-dialogues","hero-paired","hero-serious","hero-sad","hero-surprised","hero-tired","story-events","campaign-chapters","balance","citizen-events"];

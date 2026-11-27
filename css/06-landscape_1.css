@@ -1,0 +1,48 @@
+/* v4.21: landscape polish, reduced scroll, compact quest board, visual-novel town scene */
+#app.v421{max-width:min(980px,100vw)}
+#app.v421 .mission421{margin-top:8px}
+#app.v421 .report421{display:flex;justify-content:space-between;gap:8px;padding:8px 0;border-top:1px solid var(--line)}
+#app.v421 .report421:first-of-type{border-top:0}
+#app.v421 .board421-note{margin:8px 0 10px}
+#app.v421 .staff419 section{min-height:175px}
+#app.v421 .staff419 img{height:175px}
+#app.v421 .townguide421{margin-top:8px}
+#app.v421 .shop419{grid-template-columns:minmax(0,1.08fr) minmax(0,.92fr);gap:10px;align-items:stretch}
+#app.v421 .shopart419{min-height:clamp(260px,52dvh,520px);border-radius:14px;overflow:hidden;display:flex;flex-direction:column;justify-content:flex-end}
+#app.v421 .shopart419 .portrait{width:100%;height:100%;display:flex;align-items:flex-end;justify-content:center}
+#app.v421 .shopart419 .portrait img{width:100%;height:100%;object-fit:contain;object-position:center bottom}
+#app.v421 .vn421-cast{display:flex;gap:8px;overflow-x:auto;padding:10px;background:#121613cc;backdrop-filter:blur(6px)}
+#app.v421 .vn421-cast button{min-width:72px;min-height:auto;padding:6px 5px;display:grid;gap:4px;justify-items:center;background:#232a25;border-color:#5e685f}
+#app.v421 .vn421-cast button.active{background:#d8bb83;color:#192019;border-color:#d8bb83}
+#app.v421 .vn421-cast .portrait{width:52px}
+#app.v421 .vn421-cast span{font-size:11px}
+#app.v421 .shopgoods419{border-radius:14px;overflow:auto;max-height:clamp(260px,52dvh,520px)}
+#app.v421 .speech419.vn421-dialogue{margin-top:10px!important;border-radius:14px;padding:14px!important;background:linear-gradient(180deg,#232927,#1b201f);box-shadow:0 8px 30px #0004}
+#app.v421 .speech419.vn421-dialogue .actions{display:flex;flex-wrap:wrap;gap:8px;margin-top:10px}
+#app.v421 .speech419.vn421-dialogue button{flex:1 1 180px}
+#app.v421 .townplan419.map420{aspect-ratio:1600/959;max-height:min(54dvh,480px)}
+#app.v421 .townmap413{grid-template-columns:repeat(4,minmax(0,1fr))}
+#app.v421 .quest23{min-height:72px}
+#app.v421 .home43 .controls43{display:grid;gap:10px;align-content:start}
+#app.v421 .quiet40{grid-template-columns:repeat(4,minmax(0,1fr))}
+#app.v421 .menu40{grid-template-columns:repeat(4,minmax(0,1fr))}
+#app.v421 .card, #app.v421 .plan40, #app.v421 .lifehero40{scroll-margin-top:90px}
+@media (orientation:landscape){
+  #app.v421 main{padding:10px 14px 10px!important}
+  #app.v421 .townplan419.map420{max-height:min(48dvh,420px)}
+}
+@media (orientation:landscape) and (min-width:700px){
+  #app.v421.simple32:not(.home43) main{display:grid;grid-template-columns:minmax(0,1fr);align-content:start}
+}
+@media (orientation:landscape) and (max-height:580px){
+  #app.v421 .shopart419{min-height:190px}
+  #app.v421 .shopgoods419{max-height:190px}
+  #app.v421 .speech419.vn421-dialogue{padding:10px!important}
+  #app.v421 .townplan419.map420{max-height:42dvh}
+  #app.v421 .vn421-cast .portrait{width:42px}
+}
+.v422 .vn422{background:linear-gradient(#171a1b22,#171a1b99),url('../assets/scenes/new-guild.webp') center/cover!important;max-width:none;padding:8px!important;min-height:calc(100dvh - 80px)}.vnStage422{display:grid;grid-template-columns:1fr;gap:4px}.v422 .vn422 .dialogue-art{background:none;margin:0;padding:0}.v422 .vn422 .dialogue-art .portrait{width:100%;height:clamp(145px,40dvh,400px);background:none;border:0}.v422 .vn422 .dialogue-art img{object-fit:contain;aspect-ratio:auto}.v422 .vn422 .dialogue-text{background:#171a1bed;min-height:80px;margin:0;padding:9px}.v422 .vn422 .wide{min-height:34px;margin-top:4px}.v422 .vnOptions422{margin-top:4px}.v422 .vnOptions422 summary{cursor:pointer;font-size:12px}.v422 .speech419.vn421-dialogue{border-radius:4px;background:#232625;box-shadow:none}.v422 .shop419{height:clamp(145px,40dvh,360px)}.v422 .shopart419{min-height:0!important;border-radius:4px}.v422 .shopgoods419{border-radius:4px;max-height:none!important}.v422 .mission421{display:none}.v422 .quest23{min-height:44px;padding:6px}.v422 .report421{padding:4px 0}@media(orientation:landscape) and (max-height:550px){.v422 .vnStage422{grid-template-columns:1fr;gap:0}.v422 .vn422 .dialogue-art .portrait{height:36dvh}.v422 .vn422 .dialogue-text{min-height:65px}.v422 .vn422 h2{font-size:16px;margin:0 0 4px}.v422 .vn422 p{font-size:13px;margin:0}.v422 .vn422 .wide{display:inline-block;width:auto;margin-right:4px}.v422 .vn422 .wide[hidden]{display:none}.v422 .shop419{height:40dvh;min-height:125px}.v422 .speech419.vn421-dialogue{padding:6px!important;margin:3px 0!important}.v422 .speech419.vn421-dialogue button{min-height:30px;padding:3px 8px}.v422 .townclock418{margin:0}.v422 .back32{min-height:30px!important}.v422 .staff419{grid-template-columns:repeat(4,minmax(0,1fr))}.v422 .staff419 section{display:flex;flex-direction:column;min-height:0!important}.v422 .staff419 img{height:105px!important}.v422 .staff419 section>div{font-size:12px}.v422 .quest23{min-height:40px}}
+.route423{display:flex;align-items:center;justify-content:space-between;padding:6px 0}.route423 button{min-height:32px;font-size:12px}.scene423{width:min(850px,96vw);max-height:94dvh;padding:0;border:1px solid #676d64;background:#202322;color:var(--ink);overflow:auto}.scene423::backdrop{background:#000b}.cg423{height:min(48dvh,420px);background-position:center;background-size:cover;display:flex;align-items:end;justify-content:center}.cg423 .portrait{height:95%;width:auto;aspect-ratio:3/4;border:0;background:transparent}.cg423 img{object-fit:contain}.line423{padding:12px 18px;display:grid;gap:6px}.line423 p{margin:0;line-height:1.6}.line423 button{justify-self:end;min-height:34px}@media(orientation:landscape) and (max-height:550px){.scene423{width:90vw}.cg423{height:52dvh}.line423{padding:7px 12px}}
+.lifeTabs424{grid-template-columns:repeat(4,minmax(0,1fr))}.lifeGrid424{display:grid;grid-template-columns:1fr 1fr;gap:12px;align-items:start}.lifeGrid424>.scene30{height:clamp(155px,48dvh,420px);object-fit:cover}.lifeRow424{padding:8px 0;border-bottom:1px solid var(--line);font-size:13px}.lifeRow424 small{display:block}.lifeRow424 button{min-height:32px;padding:4px 8px;font-size:12px}.lifeGrid424 section{min-width:0}.lifeTabs424 button{min-height:34px;padding:4px}@media(max-width:560px) and (orientation:portrait){.lifeGrid424{grid-template-columns:1fr}.lifeGrid424>.scene30{height:140px}}
+
+
