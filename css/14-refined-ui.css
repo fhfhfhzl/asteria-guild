@@ -10,3 +10,22 @@ body,#app,#app button,#app input,#app select,#app textarea,#app h1,#app h2,#app 
 @media(max-width:699px){#app.home43{min-height:100dvh}#app.home43 main{display:flex;flex-direction:column;flex:1;gap:5px;padding:6px 9px!important}#app.home43 .lifehero40{height:clamp(155px,29dvh,275px);min-height:0}#app.home43 .controls43{flex:1}#app.home43 .dock472{position:sticky;bottom:0;z-index:7;margin-left:-9px;margin-right:-9px}#app.home43 .menu40{grid-template-columns:repeat(3,minmax(0,1fr))}#app.home43 .homeExtra444[open] .quiet40{bottom:100%}}
 @media(min-width:700px){#app.home43 .controls43{align-self:stretch}#app.home43 .lifehero40{height:clamp(220px,60dvh,540px)}#app.home43 .dock472{margin-top:auto}}
 @media(orientation:landscape) and (max-height:550px){#app.home43 .lifehero40{height:clamp(110px,47dvh,230px)}#app.home43 .dock472{position:static}#app.journal451 .menu40 button.icon458{min-height:34px}#app.journal451 .menu40 button.icon458 .art458{width:28px;height:25px}}
+
+/* v4.73: legible navigation and compact, responsive home */
+#app.journal451{background:#f7f0df}
+#app.journal451 main{background:#f7f0df}
+#app.journal451 header .settings22{display:none!important}
+#app:not(.home43) header .settings22{display:inline-flex!important;align-items:center;justify-content:center;background:transparent!important;border:0!important;color:#fff!important;box-shadow:none!important;min-width:40px;min-height:40px}
+#app:not(.home43) header .settings22 svg{display:block!important;width:23px!important;height:23px!important;stroke:#fff!important}
+#app.home43 .menu40 button.icon458{flex-direction:column;justify-content:center;align-items:center;gap:5px;font-size:14px;min-height:68px}
+#app.home43 .menu40 button.icon458 .art458{width:44px;height:44px;object-fit:contain}
+#app.home43 .menu40 button.icon458 span{font-size:14px}
+#app.home43 .dock472{background:transparent;border-top:1px solid #c8bda5}
+#app.home43 .homeExtra444>summary,#app.home43 .reports472>summary{font-size:13px}
+#app.home43 .plan40 h2{font-size:18px}
+#app.home43 .weeks40 select{font-size:14px;min-height:40px!important;background:#f7f0df!important;border:1px solid #c8bda5!important;color:#40382d!important;box-shadow:none!important}
+#app.home43 .estimate41{font-size:12px}
+#app.home43 .meters40{font-size:13px}
+#app.home43 .heroLabel40 h1{font-size:20px}
+@media(min-width:700px) and (min-height:600px){#app.home43 main{min-height:calc(100dvh - 68px);align-content:stretch}#app.home43 .lifehero40{height:clamp(300px,calc(100dvh - 135px),820px)}#app.home43 .controls43{min-height:0;justify-content:flex-start}#app.home43 .dock472{margin-top:auto}}
+@media(max-width:699px){#app.home43 .menu40 button.icon458{min-height:58px;font-size:13px}#app.home43 .menu40 button.icon458 .art458{width:34px;height:34px}#app.home43 .weeks40 select{font-size:12px}}
