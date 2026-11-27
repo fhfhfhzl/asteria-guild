@@ -14,7 +14,7 @@ function element(tag,cls,html){const x=document.createElement(tag);x.className=c
 function action(label,fn,icon){const b=element('button','nav474');b.type='button';if(icon){const i=element('img','');i.src='assets/ui/'+icon+'.webp';i.alt='';b.append(i)}b.append(element('span','',label));b.onclick=fn;return b}
 function panelTabs(){const t=element('div','tabs474');for(const [label,fn] of [['의뢰',()=>quest419('open')],['이벤트',()=>go('이야기')],['마을',()=>go('외출')],['기타',()=>go('더보기')]]){const b=action(label,fn);if((label==='의뢰'&&['길드','의뢰'].includes(screen))||(label==='이벤트'&&screen==='이야기')||(label==='마을'&&['외출','마을 교류'].includes(screen))||(label==='기타'&&screen==='더보기'))b.classList.add('active474');t.append(b)}return t}
 function freshPlan(){const p=element('section','plan40');p.append(element('h2','','월간 일정'));const w=element('div','weeks40');life34().schedule.forEach((v,i)=>{const l=element('label','');const b=action(esc(v)+' ▾',()=>pickSlot419(i));b.className='slot419';const im=element('img','activity43');im.src=scenes30[lifeActivities40[v]?.[1]||'guild'];im.alt='';l.append(im,element('small','',(i+1)+'주'),b);w.append(l)});p.append(w);const b=action('이번 달 시작 ▸',()=>{go('길드');begin34()});b.className='primary wide';p.append(b);return p}
-render=function(){original();const app=$('#app'),m=$('main');if(!app)return;app.classList.remove('layout474','detail475'); if(!state){const v=app.querySelector('.title small');if(v)v.textContent='v4.84 · 길의 등불';} orientation475();if(!state||!m||batch34||state.dialogue||state.final437)return;
+render=function(){original();const app=$('#app'),m=$('main');if(!app)return;app.classList.remove('layout474','detail475'); if(!state){const v=app.querySelector('.title small');if(v)v.textContent='v4.85 · 길의 등불';} orientation475();if(!state||!m||batch34||state.dialogue||state.final437)return;
 const home=screen==='길드',l=life34(),stage=m.querySelector('.stage43'),controls=m.querySelector('.controls43');if(home&&(!stage||!controls))return;
 const hero=stage?.querySelector('.lifehero40'),oldMeters=stage?.querySelector('.meters40');const bg=hero?.querySelector('.scene30')?.getAttribute('src')||'assets/scenes/new-guild.webp';
 const art=element('div','art474');if(hero){const j=hero.querySelector('.jia40');if(j)art.append(j);const label=hero.querySelector('.heroLabel40');if(label)art.append(label)}else{art.innerHTML='<div class="jia40 standing45">'+portrait('지아 메르벨')+'</div><div class="heroLabel40"><h1>지아 메르벨</h1><span>'+esc(guildStage433())+'</span><small>남은 기간 '+Math.max(0,1200-Math.floor(state.time/1440))+'일</small></div>'}
@@ -180,18 +180,40 @@ function node(tag,cls,txt){const e=document.createElement(tag);e.className=cls||
 function btn(txt,fn){const b=node('button','',txt);b.type='button';b.onclick=fn;return b}
 function inbox(){showStory(state.story.pending?'사건':'메인 이야기')}
 function paginate(body){
- const list=[...body.children].filter(e=>!e.hidden);
- if(list.length<2||body.scrollHeight<=body.clientHeight+4)return;
+ if(body.querySelector('.rail485'))return;
  const key=screen+'|'+(screen==='이야기'?storyTab:'')+'|'+(screen==='의뢰'?questTab22:'')+'|'+(selectedPerson??'')+'|'+(selectedQuest??'');
  if(key!==pageKey){pageKey=key;page=0}
- const height=Math.max(60,body.clientHeight-34),groups=[];let group=[],used=0;
- for(const e of list){const h=e.getBoundingClientRect().height;const scale=body.offsetHeight&&body.getBoundingClientRect().height?1:1;const cost=e.offsetHeight+8;if(group.length&&used+cost>height){groups.push(group);group=[];used=0}group.push(e);used+=cost}
- if(group.length)groups.push(group);if(groups.length<2)return;
+ // Preserve existing live nodes and their handlers. Unwrap only known list containers.
+ const list=[...body.children].filter(e=>!e.hidden);
+ if(!list.length||body.clientHeight<40)return;
+ const overflow=body.scrollHeight>body.clientHeight+4;
+ if(!overflow)return;
+ const height=Math.max(50,body.clientHeight-30),groups=[];let group=[],used=0;
+ for(const e of list){
+  const cost=e.offsetHeight+8;
+  if(group.length&&used+cost>height){groups.push(group);group=[];used=0}
+  group.push(e);used+=cost;
+ }
+ if(group.length)groups.push(group);
+ // Long standalone forms remain readable rather than being clipped.
+ if(groups.length<2){body.classList.add('long485');return}
  page=Math.min(page,groups.length-1);
- const controls=node('div','pages484');const label=node('span','','');const back=btn('‹',()=>show(page-1)),next=btn('›',()=>show(page+1));
+ const rail=node('div','rail485'),track=node('div','track485');
+ for(const g of groups){const slide=node('section','slide485');g.forEach(e=>slide.append(e));track.append(slide)}
+ rail.append(track);body.append(rail);body.classList.add('paged485');
+ const controls=node('div','pages484');const label=node('span','','');
+ const back=btn('‹',()=>show(page-1)),next=btn('›',()=>show(page+1));
+ back.setAttribute('aria-label','이전 페이지');next.setAttribute('aria-label','다음 페이지');
  controls.append(back,label,next);body.after(controls);
- function show(i){page=Math.max(0,Math.min(groups.length-1,i));groups.forEach((g,k)=>g.forEach(e=>e.hidden=k!==page));label.textContent=(page+1)+' / '+groups.length;back.disabled=page===0;next.disabled=page===groups.length-1;body.scrollTop=0}
- show(page);
+ function show(i,animate=true){page=Math.max(0,Math.min(groups.length-1,i));track.style.transition=animate?'transform .22s ease':'none';track.style.transform='translateX('+(-page*100)+'%)';label.textContent=(page+1)+' / '+groups.length;back.disabled=page===0;next.disabled=page===groups.length-1;[...track.children].forEach((e,k)=>{e.inert=k!==page;e.setAttribute('aria-hidden',String(k!==page))});}
+ let gesture=null,suppress=0;
+ function coords(t){return document.documentElement.classList.contains('autoLandscape482')?{x:t.clientY,y:-t.clientX}:{x:t.clientX,y:t.clientY}}
+ rail.addEventListener('touchstart',e=>{if(e.touches.length!==1||e.target.closest('input,select,textarea,[contenteditable]')){gesture=null;return}gesture=coords(e.touches[0])},{passive:true});
+ rail.addEventListener('touchmove',e=>{if(!gesture||e.touches.length!==1)return;const p=coords(e.touches[0]),dx=p.x-gesture.x,dy=p.y-gesture.y;if(Math.abs(dx)>12&&Math.abs(dx)>Math.abs(dy)*1.2){e.preventDefault();track.style.transition='none';const edge=(page===0&&dx>0)||(page===groups.length-1&&dx<0);track.style.transform='translateX(calc('+(-page*100)+'% + '+(edge?dx*.2:dx)+'px))'}},{passive:false});
+ rail.addEventListener('touchend',e=>{if(!gesture)return;const p=coords(e.changedTouches[0]),dx=p.x-gesture.x,dy=p.y-gesture.y;gesture=null;if(Math.abs(dx)>36&&Math.abs(dx)>Math.abs(dy)*1.2){suppress=Date.now()+350;show(page+(dx<0?1:-1))}else show(page)},{passive:true});
+ rail.addEventListener('touchcancel',()=>{gesture=null;show(page)},{passive:true});
+ rail.addEventListener('click',e=>{if(Date.now()<suppress){e.preventDefault();e.stopImmediatePropagation()}},true);
+ show(page,false);
 }
 render=function(){
  prev();const app=$('#app');if(!app)return;app.classList.remove('staff484','quest484','archive484','compact484');
