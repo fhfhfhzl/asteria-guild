@@ -1,1 +1,17 @@
-{"name":"아스테리아: 길의 등불","short_name":"길의 등불","start_url":"./index.html","display":"standalone","background_color":"#181c17","theme_color":"#181c17","icons":[{"src":"icon.svg","sizes":"any","type":"image/svg+xml","purpose":"any"}]}
+{
+  "name": "아스테리아: 길의 등불",
+  "short_name": "길의 등불",
+  "start_url": "./index.html",
+  "display": "standalone",
+  "background_color": "#181c17",
+  "theme_color": "#181c17",
+  "icons": [
+    {
+      "src": "icon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any"
+    }
+  ],
+  "orientation": "landscape"
+}

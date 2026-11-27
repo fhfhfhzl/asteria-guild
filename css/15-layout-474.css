@@ -52,3 +52,51 @@
 #app.layout474 .reports472>summary{font-size:14px}
 @media(max-width:699px) and (orientation:portrait){#app.layout474 header{min-height:56px;padding:5px 8px!important}#app.layout474 .brand474{display:grid;gap:0}#app.layout474 .brand474 strong{font-size:23px}#app.layout474 .brand474 small{font-size:12px!important}#app.layout474 .header474{gap:3px}#app.layout474 .header474 button{font-size:13px;padding:5px 8px;min-height:35px}#app.layout474 main{grid-template-columns:1fr!important;grid-template-rows:minmax(190px,37%) minmax(0,1fr);height:calc(100dvh - 57px);gap:6px!important;padding:6px!important}#app.layout474 .left474,#app.layout474 .right474{gap:5px}#app.layout474 .navGrid474 button{height:54px;min-height:54px}#app.layout474 .navGrid474 img{height:78%!important}#app.layout474 .navGrid474 span{font-size:12px!important;bottom:2px}#app.layout474 .meters40{padding:5px!important}#app.layout474 .meter40,#app.layout474 .meter40 b{font-size:12px}#app.layout474 .art474 .jia40{inset:20% 0 0 25%}#app.layout474 .heroLabel40 h1{font-size:19px!important}#app.layout474 .heroLabel40 small,#app.layout474 .heroLabel40 span{font-size:12px!important}#app.layout474 .wallet474{padding:3px 10px;font-size:13px}#app.layout474 .wallet474 strong{font-size:16px}#app.layout474 .panel474,#app.layout474 .schedule474{padding:5px}#app.layout474 .tabs474 button{min-height:34px;font-size:14px}#app.layout474 .schedule474 h2{font-size:17px!important}#app.layout474 .schedule474 .activity43{aspect-ratio:2.1}#app.layout474 .schedule474 .weeks40 small{font-size:12px}#app.layout474 .schedule474 .slot419{min-height:30px;font-size:11px}#app.layout474 .body474 p,#app.layout474 .body474 button{font-size:14px}}
 @media(orientation:landscape) and (max-height:550px){#app.layout474 header{min-height:42px;padding:3px 10px!important}#app.layout474 .brand474 strong{font-size:22px}#app.layout474 .brand474 small{font-size:13px!important}#app.layout474 .header474 button{min-height:30px;font-size:13px}#app.layout474 main{height:calc(100dvh - 44px);gap:6px!important;padding:6px!important}#app.layout474 .left474,#app.layout474 .right474{gap:5px}#app.layout474 .navGrid474 button{height:58px;min-height:58px}#app.layout474 .meters40{padding:4px!important}#app.layout474 .wallet474{padding:2px 8px;font-size:12px}#app.layout474 .wallet474 strong{font-size:16px}#app.layout474 .panel474,#app.layout474 .schedule474{padding:5px}#app.layout474 .tabs474 button{min-height:28px;font-size:13px}#app.layout474 .schedule474 h2{font-size:15px!important}#app.layout474 .schedule474 .activity43{aspect-ratio:2.5}#app.layout474 .schedule474 .slot419{min-height:25px;font-size:11px}#app.layout474 .schedule474 .weeks40 small{font-size:11px}}
+
+/* v4.75 full-width landscape-first layout */
+html,body{margin:0;width:100%;min-height:100%;max-width:none}
+#rotate475[hidden]{display:none!important}
+#rotate475{position:fixed;inset:0;z-index:100000;background:#30251d;color:#fff0d6;display:grid;place-items:center;text-align:center;padding:24px;font-family:SUIT,system-ui,sans-serif}
+#rotate475 h2{color:inherit;font-size:23px;margin:14px 0 8px}#rotate475 p{font-size:16px;color:#e7d5b7}
+#app.layout474{width:100%!important;max-width:100%!important;margin:0!important;min-height:100dvh;display:flex!important;flex-direction:column}
+#app.layout474 header{flex:none;min-height:0; padding:5px 12px!important}
+#app.layout474 main{flex:1;height:0!important;min-height:0!important;grid-template-columns:minmax(0,2fr) minmax(0,3fr)!important;grid-template-rows:minmax(0,1fr)!important;padding:6px!important;gap:8px!important}
+#app.layout474.detail475 main{grid-template-columns:minmax(0,3fr) minmax(0,7fr)!important}
+#app.layout474{height:100dvh;overflow:hidden}
+#app.layout474 .right474,#app.layout474 .left474{gap:6px}
+#app.layout474 .panel474{padding:6px;border-width:1px;border-radius:8px}
+#app.layout474 .body474{padding:5px;min-width:0}
+#app.layout474 .body474>*{max-width:100%;min-width:0}
+#app.layout474 .wallet474{padding:3px 10px;gap:10px}
+#app.layout474 .wallet474 strong{font-size:20px}
+#app.layout474 .schedule474{padding:6px;border-width:1px}
+#app.layout474.detail475 .schedule474{background:transparent;border:0;box-shadow:none;padding:0}
+#app.layout474.detail475 .schedule474>.nav474{width:100%;min-height:36px;background:#3b2b20!important;color:#fff4df!important;border:1px solid #b89a5d!important}
+#app.layout474 .schedule474 .activity43{max-height:clamp(30px,10dvh,90px)}
+#app.layout474 .navGrid474 button{height:clamp(48px,12dvh,124px);min-height:0}
+#app.layout474 .navGrid474 img{height:78%!important}
+#app.layout474 .art474 .jia40{inset:10% 0 0 5%}
+#app.layout474 .meters40{padding:5px!important;gap:6px}
+#app.layout474 .tabs474{padding-bottom:4px}
+#app.layout474 .tabs474 button{min-height:34px}
+@media(orientation:landscape) and (max-height:550px){
+#app.layout474 header{padding:3px 8px!important}
+#app.layout474 main{padding:4px!important;gap:5px!important}
+#app.layout474 .brand474 strong{font-size:21px}
+#app.layout474 .brand474 small{font-size:12px!important}
+#app.layout474 .header474 button{min-height:28px;padding:3px 8px;font-size:14px}
+#app.layout474 .wallet474{padding:1px 8px}
+#app.layout474 .wallet474 strong{font-size:15px}
+#app.layout474 .tabs474 button{min-height:26px;font-size:14px}
+#app.layout474 .schedule474 h2{font-size:16px!important}
+#app.layout474 .schedule474 .weeks40{gap:3px}
+#app.layout474 .schedule474 .activity43{max-height:34px}
+#app.layout474 .schedule474 .slot419{min-height:25px;font-size:12px}
+#app.layout474 .schedule474 .estimate41{font-size:11px}
+#app.layout474 .navGrid474{gap:3px}
+#app.layout474 .navGrid474 button{height:54px;min-height:54px}
+#app.layout474 .navGrid474 span{font-size:12px!important}
+#app.layout474 .heroLabel40 h1{font-size:20px!important}
+#app.layout474 .heroLabel40 small,#app.layout474 .heroLabel40 span{font-size:12px!important}
+#app.layout474 .body474 p,#app.layout474 .body474 button,#app.layout474 .body474 select{font-size:15px}
+}
