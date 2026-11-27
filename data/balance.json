@@ -1,0 +1,22 @@
+{
+  "growth": {
+    "education": 0.48,
+    "rest": 0.23,
+    "other": 0.36
+  },
+  "reward": {
+    "base": 85,
+    "difficulty": 8,
+    "duration": 100
+  },
+  "salary": {
+    "base": 600,
+    "skill": 18
+  },
+  "service": {
+    "base": 70,
+    "reputationDivisor": 5
+  },
+  "eventMinimumDays": 21,
+  "careerMinimum": 45
+}
