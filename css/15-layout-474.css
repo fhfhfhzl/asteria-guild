@@ -479,3 +479,9 @@ html.autoLandscape482 #app.rpg477.questDetail486 .questInfo486 .questImage486{he
 #app.talk479 .direct488 button{min-height:30px!important;line-height:1.25!important}
 #app.talk479 .talkActions483{flex-shrink:0!important;z-index:10!important}
 #app.talk479 .talkDone488{font-size:11px!important;color:#786447!important}
+
+/* v4.89 */
+#app.rpg477 .mailDot489{position:absolute;right:0;top:0;width:8px;height:8px;border-radius:50%;background:#d24b32;border:1px solid #fff2d7;pointer-events:none}
+#app.rpg477 .risk489{font-size:10px!important;color:#775335!important}
+#app.rpg477 .dispatchNotice489{padding:3px 5px;background:#f2d2bb;color:#713f27;font-size:11px;border-radius:3px;flex:none}
+#app.rpg477 .saveTime489{font-size:10px!important;color:#786447;white-space:nowrap}
