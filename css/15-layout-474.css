@@ -443,3 +443,32 @@ dialog.info486{background:#f1e3c7;color:#392b20;border:1px solid #bba47d;border-
 dialog.info486::backdrop{background:#0009}
 html.autoLandscape482 #app.rpg477.frame486 .viewport486{touch-action:pan-x}
 html.autoLandscape482 #app.rpg477.questDetail486 .questImage486{height:clamp(40px,16dvw,100px)}
+
+/* v4.87: fixed landscape detail and dense controls */
+#app.rpg477.questDetail486 .dispatch486{grid-template-columns:minmax(0,36fr) minmax(0,64fr)!important;gap:6px}
+#app.rpg477.questDetail486 .dispatch486>section{padding:3px!important;gap:2px!important;overflow:auto}
+#app.rpg477.questDetail486 .questInfo486 .questImage486{height:clamp(35px,18vh,90px)!important;flex:none}
+html.autoLandscape482 #app.rpg477.questDetail486 .questInfo486 .questImage486{height:clamp(35px,18dvw,90px)!important}
+#app.rpg477.questDetail486 .questInfo486 h3{margin:2px 0!important;font-size:14px!important}
+#app.rpg477.questDetail486 .questInfo486 p,#app.rpg477.questDetail486 .questInfo486 small{font-size:11px!important;line-height:1.25!important;margin:1px 0!important}
+#app.rpg477.questDetail486 .party487{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:3px;min-height:0;overflow:auto}
+#app.rpg477.questDetail486 .party487 label{display:flex!important;align-items:center;gap:3px;padding:3px!important;border:1px solid #c5b28c;border-radius:3px;background:#f7ecd7}
+#app.rpg477.questDetail486 .party487 input{width:14px!important;height:14px!important;min-height:0!important;margin:0!important;flex:none}
+#app.rpg477.questDetail486 .policy487,#app.rpg477.questDetail486 .policy487 details{display:flex!important;flex-wrap:wrap;gap:3px;align-items:center;padding:2px!important;margin:0!important;flex:none}
+#app.rpg477.questDetail486 .policy487 label{flex:1;min-width:85px}
+#app.rpg477.questDetail486 .policy487 select{min-height:23px!important;height:23px!important;font-size:11px!important;padding:1px 3px!important;margin:0!important}
+#app.rpg477.questDetail486 .dispatchFooter487{display:flex;align-items:center;gap:4px;flex-wrap:wrap;margin-top:auto;flex:none}
+#app.rpg477.questDetail486 .dispatchFooter487 button{flex:1;min-width:90px;width:auto!important;margin:0!important}
+#app.rpg477.questDetail486 .dispatchFooter487 small{font-size:10px!important}
+#app.rpg477.inventory487 .body474{display:flex!important;flex-direction:column;min-height:0}
+#app.rpg477.inventory487 .invLayout459{flex:1;min-height:0;display:grid!important;grid-template-columns:60% 40%!important;gap:4px}
+#app.rpg477.inventory487 .invLayout459>section{min-height:0;min-width:0;display:flex;flex-direction:column}
+#app.rpg477.inventory487 .invGrid459{flex:1;min-height:0;grid-template-columns:repeat(4,minmax(0,1fr))!important;grid-template-rows:repeat(2,minmax(0,1fr))!important;gap:3px}
+#app.rpg477.inventory487 .invSlot459,#app.rpg477.inventory487 .emptySlot459{min-height:0!important;height:100%!important;aspect-ratio:auto!important}
+#app.rpg477.inventory487 .invSlot459 img{height:65%!important;object-fit:contain}
+#app.rpg477.inventory487 .invDetail459{overflow:auto;padding:4px!important}
+#app.rpg477.inventory487 .invDetail459 img{max-height:65px!important;object-fit:contain}
+#app.rpg477.inventory487 .invTabs459{display:flex!important;gap:2px;margin:0!important}
+#app.rpg477.inventory487 .invTabs459 button{font-size:10px!important;padding:2px 5px!important;min-height:24px!important}
+#app.rpg477.operation487 .operationGrid487{display:grid!important;grid-template-columns:repeat(3,minmax(0,1fr))!important;grid-template-rows:repeat(2,minmax(0,1fr));gap:5px}
+#app.rpg477.operation487 .operationGrid487 button{min-height:36px!important;padding:5px!important}

@@ -14,7 +14,7 @@ function element(tag,cls,html){const x=document.createElement(tag);x.className=c
 function action(label,fn,icon){const b=element('button','nav474');b.type='button';if(icon){const i=element('img','');i.src='assets/ui/'+icon+'.webp';i.alt='';b.append(i)}b.append(element('span','',label));b.onclick=fn;return b}
 function panelTabs(){const t=element('div','tabs474');for(const [label,fn] of [['의뢰',()=>quest419('open')],['이벤트',()=>go('이야기')],['마을',()=>go('외출')],['기타',()=>go('더보기')]]){const b=action(label,fn);if((label==='의뢰'&&['길드','의뢰'].includes(screen))||(label==='이벤트'&&screen==='이야기')||(label==='마을'&&['외출','마을 교류'].includes(screen))||(label==='기타'&&screen==='더보기'))b.classList.add('active474');t.append(b)}return t}
 function freshPlan(){const p=element('section','plan40');p.append(element('h2','','월간 일정'));const w=element('div','weeks40');life34().schedule.forEach((v,i)=>{const l=element('label','');const b=action(esc(v)+' ▾',()=>pickSlot419(i));b.className='slot419';const im=element('img','activity43');im.src=scenes30[lifeActivities40[v]?.[1]||'guild'];im.alt='';l.append(im,element('small','',(i+1)+'주'),b);w.append(l)});p.append(w);const b=action('이번 달 시작 ▸',()=>{go('길드');begin34()});b.className='primary wide';p.append(b);return p}
-render=function(){original();const app=$('#app'),m=$('main');if(!app)return;app.classList.remove('layout474','detail475'); if(!state){const v=app.querySelector('.title small');if(v)v.textContent='v4.86 · 길의 등불';} orientation475();if(!state||!m||batch34||state.dialogue||state.final437)return;
+render=function(){original();const app=$('#app'),m=$('main');if(!app)return;app.classList.remove('layout474','detail475'); if(!state){const v=app.querySelector('.title small');if(v)v.textContent='v4.87 · 길의 등불';} orientation475();if(!state||!m||batch34||state.dialogue||state.final437)return;
 const home=screen==='길드',l=life34(),stage=m.querySelector('.stage43'),controls=m.querySelector('.controls43');if(home&&(!stage||!controls))return;
 const hero=stage?.querySelector('.lifehero40'),oldMeters=stage?.querySelector('.meters40');const bg=hero?.querySelector('.scene30')?.getAttribute('src')||'assets/scenes/new-guild.webp';
 const art=element('div','art474');if(hero){const j=hero.querySelector('.jia40');if(j)art.append(j);const label=hero.querySelector('.heroLabel40');if(label)art.append(label)}else{art.innerHTML='<div class="jia40 standing45">'+portrait('지아 메르벨')+'</div><div class="heroLabel40"><h1>지아 메르벨</h1><span>'+esc(guildStage433())+'</span><small>남은 기간 '+Math.max(0,1200-Math.floor(state.time/1440))+'일</small></div>'}
@@ -263,7 +263,7 @@ function rail(parent,items,count){
  track.style.setProperty('--count486',count);
  let index=0,max=Math.max(0,items.length-count);
  const prev=button('‹',()=>move(-1)),next=button('›',()=>move(1));prev.className='prev486';next.className='next486';prev.setAttribute('aria-label','이전 항목');next.setAttribute('aria-label','다음 항목');wrap.append(prev,next);
- function move(d){index=Math.max(0,Math.min(max,index+d));const step=track.children[0]?.offsetWidth+6||0;track.style.transform='translateX('+(-index*step)+'px)';prev.disabled=index===0;next.disabled=index===max;prev.hidden=next.hidden=max===0}
+ function move(d){index=Math.max(0,Math.min(max,index+d));const step=(track.children[0]?.offsetWidth||0)+6;track.style.transform='translateX('+(-index*step)+'px)';prev.disabled=index===0;next.disabled=index===max;prev.hidden=next.hidden=max===0}
  swipe(viewport,()=>move(-1),()=>move(1));move(0);requestAnimationFrame(()=>move(0));
 }
 function detailsButton(d){const b=button(d.querySelector('summary')?.textContent.trim()||'안내',()=>{const modal=el('dialog','info486');const close=button('닫기',()=>modal.close());const content=el('div','infoBody486');const original=[...d.children].filter(e=>e.tagName!=='SUMMARY');original.forEach(e=>content.append(e));modal.append(content,close);document.body.append(modal);modal.addEventListener('close',()=>{original.forEach(e=>d.append(e));modal.remove()},{once:true});modal.showModal()});b.className='infoButton486';d.before(b);d.hidden=true;return b}
@@ -285,6 +285,12 @@ render=function(){
    const img=el('img','questImage486');img.src=scenes30[q?.type==='채집'?'study':q?.type==='토벌'?'training':'quest'];img.alt='';info.append(img);
    let inForm=false;
    for(const ch of [...detail.children]){if(ch.matches('label,details,select,input,button')||ch.textContent.includes('파견 인원')||ch.textContent.includes('식량 필요'))inForm=true;(inForm?actions:info).append(ch)}
+   const party=el('div','party487'),policy=el('div','policy487'),footer=el('div','dispatchFooter487');
+   for(const lab of [...actions.querySelectorAll('label')]){if(lab.querySelector('input[name="party"]'))party.append(lab)}
+   for(const item of [...actions.children]){if(item.matches('details,select,label')&&!item.querySelector('input[name="party"]'))policy.append(item);else if(item.matches('button')||item.textContent.includes('식량 필요'))footer.append(item)}
+   if(party.children.length)actions.append(party);
+   if(policy.children.length){for(const d of policy.querySelectorAll('details')){d.open=true;d.querySelector('summary')?.remove()}actions.append(policy)}
+   if(footer.children.length)actions.append(footer);
    form.append(info,actions);body.replaceChildren(form);
    return;
   }
@@ -305,6 +311,27 @@ render=function(){
   body.querySelectorAll('.pager444').forEach(p=>{const parent=p.parentElement;const items=[...parent.children].filter(e=>e!==p);p.remove();if(items.length)rail(parent,items,4)});
   body.querySelectorAll('.invPager459').forEach(p=>{p.querySelector('small')?.remove();const bs=p.querySelectorAll('button');if(bs.length===2){const g=body.querySelector('.invGrid459');if(g)swipe(g,()=>{if(!bs[0].disabled)bs[0].click()},()=>{if(!bs[1].disabled)bs[1].click()});if(bs[0].disabled&&bs[1].disabled)p.hidden=true}});
   if(screen==='이야기'&&storyTab!=='연대기')body.querySelectorAll(':scope > h2').forEach(e=>e.remove());
+ }
+};render();
+})();
+
+/* v4.87: compact fixed feature frames */
+(function(){
+const prev=render;
+render=function(){
+ prev();const app=$('#app');if(!state||!app?.classList.contains('frame486')||state.dialogue)return;
+ const body=app.querySelector('.body474'),head=app.querySelector('.heading477');if(!body||!head)return;
+ body.querySelectorAll(':scope > .back32').forEach(b=>b.remove());
+ const h=head.querySelector('h2');
+ for(const x of [...body.children])if(x.matches('h2')&&x.textContent.trim()===h?.textContent.trim())x.remove();
+ if(screen==='소지품'){
+  app.classList.add('inventory487');
+  const inv=body.querySelector('.invHead459');if(inv){inv.querySelector('h2')?.remove();inv.remove()}
+  const tabs=body.querySelector('.invTabs459');if(tabs)head.querySelector('.tools486')?.append(tabs);
+ }
+ if(screen==='길드 운영'){
+  app.classList.add('operation487');
+  const menu=body.querySelector('.menu40');if(menu)menu.classList.add('operationGrid487');
  }
 };render();
 })();
