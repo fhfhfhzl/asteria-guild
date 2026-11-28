@@ -14,7 +14,7 @@ function element(tag,cls,html){const x=document.createElement(tag);x.className=c
 function action(label,fn,icon){const b=element('button','nav474');b.type='button';if(icon){const i=element('img','');i.src='assets/ui/'+icon+'.webp';i.alt='';b.append(i)}b.append(element('span','',label));b.onclick=fn;return b}
 function panelTabs(){const t=element('div','tabs474');for(const [label,fn] of [['의뢰',()=>quest419('open')],['이벤트',()=>go('이야기')],['마을',()=>go('외출')],['기타',()=>go('더보기')]]){const b=action(label,fn);if((label==='의뢰'&&['길드','의뢰'].includes(screen))||(label==='이벤트'&&screen==='이야기')||(label==='마을'&&['외출','마을 교류'].includes(screen))||(label==='기타'&&screen==='더보기'))b.classList.add('active474');t.append(b)}return t}
 function freshPlan(){const p=element('section','plan40');p.append(element('h2','','월간 일정'));const w=element('div','weeks40');life34().schedule.forEach((v,i)=>{const l=element('label','');const b=action(esc(v)+' ▾',()=>pickSlot419(i));b.className='slot419';const im=element('img','activity43');im.src=scenes30[lifeActivities40[v]?.[1]||'guild'];im.alt='';l.append(im,element('small','',(i+1)+'주'),b);w.append(l)});p.append(w);const b=action('이번 달 시작 ▸',()=>{go('길드');begin34()});b.className='primary wide';p.append(b);return p}
-render=function(){original();const app=$('#app'),m=$('main');if(!app)return;app.classList.remove('layout474','detail475'); if(!state){const v=app.querySelector('.title small');if(v)v.textContent='v4.89 · 길의 등불';} orientation475();if(!state||!m||batch34||state.dialogue||state.final437)return;
+render=function(){original();const app=$('#app'),m=$('main');if(!app)return;app.classList.remove('layout474','detail475'); if(!state){const v=app.querySelector('.title small');if(v)v.textContent='v4.90 · 길의 등불';} orientation475();if(!state||!m||batch34||state.dialogue||state.final437)return;
 const home=screen==='길드',l=life34(),stage=m.querySelector('.stage43'),controls=m.querySelector('.controls43');if(home&&(!stage||!controls))return;
 const hero=stage?.querySelector('.lifehero40'),oldMeters=stage?.querySelector('.meters40');const bg=hero?.querySelector('.scene30')?.getAttribute('src')||'assets/scenes/new-guild.webp';
 const art=element('div','art474');if(hero){const j=hero.querySelector('.jia40');if(j)art.append(j);const label=hero.querySelector('.heroLabel40');if(label)art.append(label)}else{art.innerHTML='<div class="jia40 standing45">'+portrait('지아 메르벨')+'</div><div class="heroLabel40"><h1>지아 메르벨</h1><span>'+esc(guildStage433())+'</span><small>남은 기간 '+Math.max(0,1200-Math.floor(state.time/1440))+'일</small></div>'}
@@ -28,7 +28,7 @@ if(!bottom.children.length){const b=action(home?'월간 일정':'길드 · 월�
 const wallet=element('div','wallet474','<span>보유금</span> <strong>'+money(l.wallet)+'</strong>');panel.append(panelTabs(),body);right.append(wallet,panel,bottom);
 const left=element('div','left474');left.append(art,nav);m.replaceChildren(left,right);m.style.setProperty('--bg474','url("'+bg+'")');app.classList.add('layout474');app.classList.toggle('detail475',!home);
 const h=app.querySelector('header');if(h){const e=h.querySelector('.eyebrow');if(e){e.replaceChildren(element('div','brand474','<strong>길의 등불</strong><small>'+month40()+'</small>'));const links=element('div','header474');links.append(action('기록',()=>go('인생 기록')),action('생활',()=>lifePage424('요리')),action('설정',()=>go('더보기')));if(l.run||blocked34())links.querySelectorAll('button').forEach(b=>b.disabled=true);e.append(links)}h.querySelector('.hud')?.remove();}
-const version=app.querySelector('.title small');if(version)version.textContent='v4.89 · 길의 등불';
+const version=app.querySelector('.title small');if(version)version.textContent='v4.90 · 길의 등불';
 };render();
 })();
 
@@ -364,5 +364,45 @@ render=function(){
 };
 const goBase=go;
 go=function(s){if(screen==='의뢰'&&s!=='의뢰')draft=null;return goBase(s)};
+render();
+})();
+
+/* v4.90: actionable alerts and live resource previews */
+(function(){
+const previous=render;
+function preview(form){
+ const q=state.quests.find(x=>x.id===selectedQuest);if(!q)return;
+ const ids=[...form.querySelectorAll('input[name="party"]:checked')].map(e=>+e.value),ps=state.people.filter(p=>ids.includes(p.id)&&available(p)),prep=form.querySelector('#prep')?.checked?1:0;
+ const food=Math.max(1,Math.ceil(q.duration/480))*ps.length,cost=prep*100*ps.length,tradeCost=q.trade?.mode==='buy'?q.trade.total:0;
+ const difficulty=Math.max(1,Math.round((q.baseDifficulty18??q.difficulty)*levels18[state.market18.level].risk));
+ const score=power(ps)+teamBond(ps)+prep*8+(prep&&staffOn(2)?4:0)+Math.min(12,Math.max(0,ps.length-1)*4);
+ let out=form.querySelector('.preview490');if(!out){out=document.createElement('div');out.className='preview490';form.querySelector('.questActions486')?.prepend(out)}
+ const missing=!ps.length?'모험가를 선택하세요.':state.food<food?'식량 부족':state.fund<cost+tradeCost?'준비 자금 부족':q.trade&&!tradeReady(q)?'교역 조건 미충족':'';
+ const retreat=difficulty>=45&&form.querySelector('#policy')?.value==='safe'&&(score<difficulty*.8||ps.some(p=>p.hp<=Number(form.querySelector('#threshold')?.value||40)));
+ const assessment=!ps.length?'선택 대기':q.monsterId?'몬스터별 대응에 따라 달라짐':retreat?'현재 조건에서 철수 가능성 높음':score>=difficulty*1.3?'전력 여유':score>=difficulty?'전력 적정':'전력 부족';
+ out.replaceChildren();
+ for(const [label,value] of [['인원',ps.length+'명'],['식량',food+'/'+state.food],['준비비',money(cost)],['위험 평가',assessment]]){const cell=document.createElement('div');const small=document.createElement('small');small.textContent=label;const b=document.createElement('b');b.textContent=value;cell.append(small,b);out.append(cell)}
+ const dispatchButton=form.querySelector('button[onclick^="dispatch("]');if(dispatchButton){dispatchButton.disabled=!!missing;dispatchButton.title=missing||'파견 확정'}
+ if(missing){const m=document.createElement('small');m.className='warning490';m.textContent=missing;out.append(m)}
+}
+function schedulePreview(plan){
+ const l=life34();let cost=0,wage=0;const stats={};
+ for(const a of l.schedule){const x=lifeActivities40[a];if(!x)continue;cost+=x[3]*7;wage+=x[4]*7;if(x[2])stats[x[2]]=(stats[x[2]]||0)+7}
+ const box=document.createElement('div');box.className='schedulePreview490';
+ const text=document.createElement('span');text.textContent='4주 예정 · 활동비 '+money(cost)+' · 수입 '+money(wage)+' · 차액 '+(wage>=cost?'+':'−')+money(Math.abs(wage-cost));
+ const note=document.createElement('small');note.textContent='휴식 대체·사건·잔여일에 따라 실제 결과는 달라집니다.';
+ box.append(text,note);plan.querySelector('.weeks40')?.after(box);
+}
+render=function(){
+ previous();const app=$('#app');if(!state||!app||state.dialogue||state.final437)return;
+ const mail=app.querySelector('.mail484');if(mail){mail.onclick=()=>{
+  if(state.quests.some(q=>['missing','delayed'].includes(q.status)))quest419('active');
+  else if(state.story.pending)showStory('사건');
+  else if(state.contract14?.pending)go('시민 사건');
+  else showStory('메인 이야기');
+ }}
+ const form=app.querySelector('.dispatch486');if(form){preview(form);form.addEventListener('change',()=>preview(form))}
+ const plan=app.querySelector('.plan40');if(plan&&app.classList.contains('planning477')&&!plan.querySelector('.schedulePreview490'))schedulePreview(plan);
+};
 render();
 })();

@@ -485,3 +485,12 @@ html.autoLandscape482 #app.rpg477.questDetail486 .questInfo486 .questImage486{he
 #app.rpg477 .risk489{font-size:10px!important;color:#775335!important}
 #app.rpg477 .dispatchNotice489{padding:3px 5px;background:#f2d2bb;color:#713f27;font-size:11px;border-radius:3px;flex:none}
 #app.rpg477 .saveTime489{font-size:10px!important;color:#786447;white-space:nowrap}
+
+/* v4.90 compact live previews */
+#app.rpg477 .preview490{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:3px;padding:3px;background:#e3d4b5;border-radius:4px;flex:none}
+#app.rpg477 .preview490>div{min-width:0;display:flex;flex-direction:column;gap:1px}
+#app.rpg477 .preview490 small{font-size:9px!important;line-height:1.2}
+#app.rpg477 .preview490 b{font-size:11px!important;line-height:1.2;overflow-wrap:anywhere}
+#app.rpg477 .preview490 .warning490{grid-column:1/-1;color:#913f29}
+#app.rpg477 .schedulePreview490{display:flex;flex-wrap:wrap;align-items:center;gap:2px 8px;padding:3px 5px;background:#e3d4b5;color:#392b20;border-radius:3px;font-size:11px!important;line-height:1.2}
+#app.rpg477 .schedulePreview490 small{font-size:9px!important;color:#79674f}
