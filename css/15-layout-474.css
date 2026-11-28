@@ -752,3 +752,15 @@ html.autoLandscape482 #app.title500 .titleBrand500 h1{font-size:clamp(30px,6dvh,
 #app.rpg477.town494 .townRight494>.townClosed494{left:8px;top:8px;width:43%!important;height:auto!important}
 #app.rpg477.town494 .townRight494 button{background:#eadbb9!important;color:#392b20!important;border:1px solid #b69b69!important;border-radius:4px!important}
 #app.rpg477.town494 .townRight494 small,#app.rpg477.town494 .townRight494 .muted{color:#e5d5b6!important}
+
+/* v5.07 independent town layers */
+#app.rpg477.town494 .townFrame494>.shopart419>img:not(.scene30),#app.rpg477.town494 .townFrame494>.shopart419>.portrait{inset:0 0 auto auto!important;width:54%!important;height:calc(100% - 64px)!important;object-fit:contain!important;object-position:center bottom!important;background:transparent!important}
+#app.rpg477.town494 .townFrame494>.shopart419>.portrait img{object-fit:contain!important;object-position:center bottom!important}
+#app.rpg477.town494 .townFrame494>.shopart419>.scene30{object-fit:cover!important}
+#app.rpg477.town494 .townFrame494 .vn421-cast{position:absolute!important;inset:auto 0 0 0!important;height:60px!important;display:flex!important;justify-content:center!important;gap:4px!important;padding:3px!important;background:#30271fe8!important;overflow:hidden!important;z-index:5!important}
+#app.rpg477.town494 .vn421-cast button{flex:1 1 0!important;min-width:0!important;max-width:90px!important;height:54px!important;display:flex!important;flex-direction:column!important;align-items:center!important;justify-content:center!important;padding:2px!important;color:#fff1d3!important}
+#app.rpg477.town494 .vn421-cast button .portrait,#app.rpg477.town494 .vn421-cast button img{position:static!important;width:32px!important;height:32px!important;object-fit:cover!important;transform:none!important;margin:0!important}
+#app.rpg477.town494 .vn421-cast button span{font-size:10px!important;line-height:12px!important;color:#fff1d3!important}
+#app.rpg477.town494 .townFrame494:has(.vn421-cast button)>.townRight494{bottom:64px!important}
+#app.rpg477.town494 .townFrame494:not(:has(.vn421-cast button))>.shopart419>img:not(.scene30),#app.rpg477.town494 .townFrame494:not(:has(.vn421-cast button))>.shopart419>.portrait{height:100%!important}
+#app.rpg477.town494 .townFrame494>.shopart419>span{position:absolute!important;left:auto!important;right:8px!important;bottom:66px!important;z-index:2!important;background:#30271fcc!important;color:#fff1d3!important;padding:3px 7px!important}
