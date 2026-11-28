@@ -648,3 +648,20 @@ html.autoLandscape482 #app.title500{height:100%!important}
 #app.title500 .titleSettings500 button{min-height:24px!important;margin:0!important;padding:3px 5px!important;font-size:11px!important;background:#dfcca3!important;color:#392b20!important;border:1px solid #b69b69!important;border-radius:3px!important}
 html.autoLandscape482 #app.title500 .titleBrand500 h1{font-size:clamp(30px,6dvh,62px)!important}
 @media (orientation:portrait){html:not(.autoLandscape482) #app.title500 .titleStage500{grid-template-columns:1fr;align-content:center}}
+
+/* v5.01: local absolute anchors, compact native-free controls */
+#app .anchor501{position:relative!important;box-sizing:border-box!important}
+#app .management497>.anchor501 .anchoredIcon501,#app .settingCards499>.anchor501 .anchoredIcon501{position:absolute!important;top:36%!important;left:50%!important;transform:translate(-50%,-50%)!important;width:36px!important;height:36px!important;object-fit:contain!important;margin:0!important}
+#app .management497>.anchor501 span,#app .settingCards499>.anchor501 span{position:absolute!important;top:67%!important;left:3%!important;right:3%!important;text-align:center!important;line-height:1.2!important;white-space:normal!important;font-size:12px!important}
+#app .dock477>.anchor501 .anchoredIcon501{position:absolute!important;left:8px!important;top:50%!important;transform:translateY(-50%)!important;width:23px!important;height:23px!important;object-fit:contain!important;margin:0!important}
+#app .dock477>.anchor501{padding-left:32px!important}
+#app .titleSettingsHead500{display:grid!important;grid-template-columns:minmax(0,1fr) auto!important;gap:8px!important}
+#app .titleSettingsHead500 h2{white-space:nowrap!important;word-break:keep-all!important}
+#app .titleSettingsHead500 button{width:auto!important;min-width:42px!important}
+#app .titleFields500{grid-template-columns:repeat(2,minmax(0,1fr))!important;gap:5px!important}
+#app .titleFields500 label:has(.speed501){grid-column:1/-1;display:block!important}
+#app .speed501{display:grid!important;grid-template-columns:repeat(4,minmax(0,1fr));gap:3px;width:100%;margin-top:3px}
+#app .speed501 button{width:100%!important;min-width:0!important;min-height:24px!important;padding:3px 1px!important;margin:0!important;white-space:nowrap!important;font-size:11px!important;background:#dfcca3!important;color:#392b20!important;border:1px solid #b69b69!important;border-radius:3px!important}
+#app .speed501 button.active501{background:#536d51!important;color:#fff0d3!important}
+#app .lifeToolbar498 .lifeTabs424 button{background:#30251eef!important;border:1px solid #d5bf90!important;min-width:48px!important;opacity:1!important}
+#app .lifeToolbar498 .lifeTabs424 button.primary{background:#536d51!important}
