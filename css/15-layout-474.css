@@ -578,3 +578,31 @@ html.autoLandscape482 #app.rpg477.town494 .townView494{touch-action:pan-x}
 /* v4.97 independent management tiles: avoid legacy menu40 reset */
 #app.rpg477.operation487 .body474>.management497{display:grid!important;grid-template-columns:repeat(4,minmax(0,1fr))!important;grid-template-rows:repeat(2,minmax(0,1fr))!important;gap:6px!important;flex:1 1 0!important;height:0!important;min-height:0!important;width:100%!important;margin:0!important;padding:0!important;align-items:stretch!important}
 #app.rpg477.operation487 .management497>.manageTile497{background:#f6e8ca!important;border:1px solid #b69b69!important;border-radius:6px!important;box-shadow:0 1px 3px #392b2030!important}
+
+/* v4.98 full-bleed life scene with translucent controls */
+#app.rpg477.life498 .panel474{padding:0!important;position:relative!important;overflow:hidden!important;background:#392b20!important}
+#app.rpg477.life498 .heading477{position:absolute!important;top:0;left:0;right:0;z-index:5;padding:4px 9px!important;margin:0!important;min-height:28px!important;border:0!important;background:linear-gradient(#241b13ed,#241b1370)!important;color:#fff0d3!important}
+#app.rpg477.life498 .heading477 h2,#app.rpg477.life498 .heading477 button{color:#fff0d3!important}
+#app.rpg477.life498 .body474{padding:0!important;display:flex!important;flex:1;min-height:0;overflow:hidden!important}
+#app.rpg477.life498 .lifeStage498{position:relative;isolation:isolate;flex:1;min-height:0;width:100%;height:100%;overflow:hidden}
+#app.rpg477.life498 .lifeArt498{position:absolute;inset:0;z-index:-1}
+#app.rpg477.life498 .lifeArt498 img{display:block!important;width:100%!important;height:100%!important;max-height:none!important;max-width:none!important;min-height:0!important;aspect-ratio:auto!important;object-fit:cover!important;object-position:center!important;border:0!important;border-radius:0!important;margin:0!important}
+#app.rpg477.life498 .lifeToolbar498{position:absolute;top:34px;left:8px;right:8px;display:flex;gap:5px;align-items:center;justify-content:space-between}
+#app.rpg477.life498 .lifeTabs424{display:flex!important;flex-wrap:wrap!important;gap:4px!important;margin:0!important;width:auto!important}
+#app.rpg477.life498 .lifeTabs424 button{flex:none!important;width:auto!important;min-width:45px!important;min-height:25px!important;padding:3px 10px!important;white-space:nowrap!important;border:1px solid #d5bf90!important;border-radius:4px!important;background:#30251ee8!important;color:#fff0d3!important;font-size:11px!important}
+#app.rpg477.life498 .lifeTabs424 button.primary{background:#526c50f5!important}
+#app.rpg477.life498 .lifeWallet498{background:#30251edb;color:#fff0d3!important;padding:4px 8px;border-radius:4px;white-space:nowrap}
+#app.rpg477.life498 .lifePanel498{position:absolute;bottom:7px;left:8px;right:8px;min-height:54px;max-height:48%;padding:5px 22px;box-sizing:border-box;overflow:hidden;background:#291f17c9;border:1px solid #b99d6a;border-radius:5px;color:#fff0d3}
+#app.rpg477.life498 .lifeViewport498{width:100%;overflow:hidden;touch-action:pan-y}
+html.autoLandscape482 #app.rpg477.life498 .lifeViewport498{touch-action:pan-x}
+#app.rpg477.life498 .lifeTrack498{display:flex;gap:5px;width:100%;transition:transform .2s ease}
+#app.rpg477.life498 .lifeTrack498>.lifeRow424{flex:0 0 calc((100% - (var(--lifeCount) - 1)*5px)/var(--lifeCount));min-width:0;box-sizing:border-box;display:flex!important;flex-wrap:wrap;align-content:center;gap:3px!important;padding:4px!important;margin:0!important;background:#f2e4c9ed;border:1px solid #b99d6a;border-radius:4px;color:#392b20}
+#app.rpg477.life498 .lifeRow424 b{font-size:12px!important}
+#app.rpg477.life498 .lifeRow424 small{display:block;font-size:10px!important;line-height:1.2!important}
+#app.rpg477.life498 .lifePanel498 button{min-height:23px!important;font-size:11px!important;padding:2px 6px!important;border:1px solid #b99d6a!important;background:#e6d2aa!important;color:#392b20!important;border-radius:3px!important}
+#app.rpg477.life498 .lifePanel498 button:disabled{opacity:.45}
+#app.rpg477.life498 .lifePanel498 section{overflow:auto;max-height:100%;color:#fff0d3}
+#app.rpg477.life498 .lifePanel498 section p,#app.rpg477.life498 .lifePanel498 section h3{color:#fff0d3!important;margin:2px 0!important}
+#app.rpg477.life498 .lifeArrow498{position:absolute;top:50%;transform:translateY(-50%);width:17px!important;padding:0!important}
+#app.rpg477.life498 .left498{left:2px}#app.rpg477.life498 .right498{right:2px}
+#app.rpg477.life498 .lifeArrow498[hidden]{display:none!important}

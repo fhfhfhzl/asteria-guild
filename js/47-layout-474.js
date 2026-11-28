@@ -14,7 +14,7 @@ function element(tag,cls,html){const x=document.createElement(tag);x.className=c
 function action(label,fn,icon){const b=element('button','nav474');b.type='button';if(icon){const i=element('img','');i.src='assets/ui/'+icon+'.webp';i.alt='';b.append(i)}b.append(element('span','',label));b.onclick=fn;return b}
 function panelTabs(){const t=element('div','tabs474');for(const [label,fn] of [['의뢰',()=>quest419('open')],['이벤트',()=>go('이야기')],['마을',()=>go('외출')],['기타',()=>go('더보기')]]){const b=action(label,fn);if((label==='의뢰'&&['길드','의뢰'].includes(screen))||(label==='이벤트'&&screen==='이야기')||(label==='마을'&&['외출','마을 교류'].includes(screen))||(label==='기타'&&screen==='더보기'))b.classList.add('active474');t.append(b)}return t}
 function freshPlan(){const p=element('section','plan40');p.append(element('h2','','월간 일정'));const w=element('div','weeks40');life34().schedule.forEach((v,i)=>{const l=element('label','');const b=action(esc(v)+' ▾',()=>pickSlot419(i));b.className='slot419';const im=element('img','activity43');im.src=scenes30[lifeActivities40[v]?.[1]||'guild'];im.alt='';l.append(im,element('small','',(i+1)+'주'),b);w.append(l)});p.append(w);const b=action('이번 달 시작 ▸',()=>{go('길드');begin34()});b.className='primary wide';p.append(b);return p}
-render=function(){original();const app=$('#app'),m=$('main');if(!app)return;app.classList.remove('layout474','detail475'); if(!state){const v=app.querySelector('.title small');if(v)v.textContent='v4.97 · 길의 등불';} orientation475();if(!state||!m||batch34||state.dialogue||state.final437)return;
+render=function(){original();const app=$('#app'),m=$('main');if(!app)return;app.classList.remove('layout474','detail475'); if(!state){const v=app.querySelector('.title small');if(v)v.textContent='v4.98 · 길의 등불';} orientation475();if(!state||!m||batch34||state.dialogue||state.final437)return;
 const home=screen==='길드',l=life34(),stage=m.querySelector('.stage43'),controls=m.querySelector('.controls43');if(home&&(!stage||!controls))return;
 const hero=stage?.querySelector('.lifehero40'),oldMeters=stage?.querySelector('.meters40');const bg=hero?.querySelector('.scene30')?.getAttribute('src')||'assets/scenes/new-guild.webp';
 const art=element('div','art474');if(hero){const j=hero.querySelector('.jia40');if(j)art.append(j);const label=hero.querySelector('.heroLabel40');if(label)art.append(label)}else{art.innerHTML='<div class="jia40 standing45">'+portrait('지아 메르벨')+'</div><div class="heroLabel40"><h1>지아 메르벨</h1><span>'+esc(guildStage433())+'</span><small>남은 기간 '+Math.max(0,1200-Math.floor(state.time/1440))+'일</small></div>'}
@@ -28,7 +28,7 @@ if(!bottom.children.length){const b=action(home?'월간 일정':'길드 · 월�
 const wallet=element('div','wallet474','<span>보유금</span> <strong>'+money(l.wallet)+'</strong>');panel.append(panelTabs(),body);right.append(wallet,panel,bottom);
 const left=element('div','left474');left.append(art,nav);m.replaceChildren(left,right);m.style.setProperty('--bg474','url("'+bg+'")');app.classList.add('layout474');app.classList.toggle('detail475',!home);
 const h=app.querySelector('header');if(h){const e=h.querySelector('.eyebrow');if(e){e.replaceChildren(element('div','brand474','<strong>길의 등불</strong><small>'+month40()+'</small>'));const links=element('div','header474');links.append(action('기록',()=>go('인생 기록')),action('생활',()=>lifePage424('요리')),action('설정',()=>go('더보기')));if(l.run||blocked34())links.querySelectorAll('button').forEach(b=>b.disabled=true);e.append(links)}h.querySelector('.hud')?.remove();}
-const version=app.querySelector('.title small');if(version)version.textContent='v4.97 · 길의 등불';
+const version=app.querySelector('.title small');if(version)version.textContent='v4.98 · 길의 등불';
 };render();
 })();
 
@@ -567,5 +567,40 @@ render=function(){
   for(const b of [...quick.querySelectorAll('button')])if(['신문','생활','길드 운영'].includes(b.textContent.trim()))b.remove();
   quick.append(button('몬스터 도감',()=>showHistory('몬스터 도감'),'book'));
  }
+};render();
+})();
+
+/* v4.98: life activities on a full-bleed scene */
+(function(){
+const prev=render,positions=new Map();
+function node(t,c){const e=document.createElement(t);e.className=c;return e}
+render=function(){
+ prev();const app=$('#app');if(!app)return;app.classList.remove('life498');
+ if(!state||state.dialogue||screen!=='생활')return;
+ const body=app.querySelector('.body474'),grid=body?.querySelector('.lifeGrid424'),image=grid?.querySelector('img.scene30'),section=grid?.querySelector('section'),tabs=body?.querySelector('.lifeTabs424'),head=app.querySelector('.heading477');
+ if(!body||!grid||!image||!section||!tabs)return;
+ app.classList.add('life498');
+ const stage=node('div','lifeStage498'),art=node('div','lifeArt498'),toolbar=node('div','lifeToolbar498'),panel=node('div','lifePanel498');
+ art.append(image);toolbar.append(tabs);
+ const wallet=node('small','lifeWallet498');wallet.textContent=money(life34().wallet);toolbar.append(wallet);
+ const rows=[...section.children];
+ if(rows.length&&rows.every(e=>e.classList.contains('lifeRow424'))){
+  const viewport=node('div','lifeViewport498'),track=node('div','lifeTrack498');viewport.append(track);panel.append(viewport);rows.forEach(e=>track.append(e));
+  const count=Math.min(3,rows.length),max=Math.max(0,rows.length-count),key=lifeTab424;track.style.setProperty('--lifeCount',count);
+  let index=Math.min(max,positions.get(key)||0),start=null,block=0;
+  const left=node('button','lifeArrow498 left498'),right=node('button','lifeArrow498 right498');
+  left.textContent='‹';right.textContent='›';left.setAttribute('aria-label','이전 항목');right.setAttribute('aria-label','다음 항목');
+  function move(d){index=Math.max(0,Math.min(max,index+d));positions.set(key,index);track.style.transform='translateX('+(-index*((rows[0].offsetWidth||0)+5))+'px)';left.disabled=index===0;right.disabled=index===max;left.hidden=right.hidden=max===0}
+  left.onclick=()=>move(-1);right.onclick=()=>move(1);panel.append(left,right);
+  const xy=t=>document.documentElement.classList.contains('autoLandscape482')?[t.clientY,-t.clientX]:[t.clientX,t.clientY];
+  viewport.addEventListener('touchstart',e=>{start=e.touches.length===1?xy(e.touches[0]):null},{passive:true});
+  viewport.addEventListener('touchmove',e=>{if(start&&e.touches.length===1){const p=xy(e.touches[0]);if(Math.abs(p[0]-start[0])>12&&Math.abs(p[0]-start[0])>Math.abs(p[1]-start[1]))e.preventDefault()}},{passive:false});
+  viewport.addEventListener('touchend',e=>{if(!start)return;const p=xy(e.changedTouches[0]),dx=p[0]-start[0],dy=p[1]-start[1];start=null;if(Math.abs(dx)>30&&Math.abs(dx)>Math.abs(dy)*1.2){block=Date.now()+350;move(dx<0?1:-1)}},{passive:true});
+  viewport.addEventListener('touchcancel',()=>start=null);
+  viewport.addEventListener('click',e=>{if(Date.now()<block){e.preventDefault();e.stopImmediatePropagation()}},true);
+  requestAnimationFrame(()=>move(0));
+ }else{panel.append(section)}
+ stage.append(art,toolbar,panel);body.replaceChildren(stage);
+ const h=head?.querySelector('h2');if(h)h.textContent='나의 생활';
 };render();
 })();
