@@ -679,3 +679,28 @@ html.autoLandscape482 #app.title500 .titleBrand500 h1{font-size:clamp(30px,6dvh,
 #app.rpg477.roster502 .visualbody23>b,#app.rpg477.roster502 .visualbody23 small{white-space:normal!important;overflow:visible!important;text-overflow:clip!important;font-size:11px!important;line-height:1.2!important;text-align:center!important}
 #app.rpg477.roster502 .job23{max-width:100%!important;white-space:normal!important}
 #app.rpg477.roster502 .visualbody23 .bar{width:100%!important}
+
+/* v5.03 */
+#app.rpg477.town494 .townFrame494{grid-template-columns:minmax(0,1fr) minmax(0,1fr)!important}
+#app.rpg477.town494 .shopart419>img,#app.rpg477.town494 .shopart419>.portrait,#app.rpg477.town494 .shopart419>.portrait img{width:100%!important;height:100%!important;max-height:none!important;object-fit:cover!important;object-position:center 30%!important}
+#app.rpg477.town494 .townRight494{display:grid!important;grid-template-rows:minmax(0,1.35fr) minmax(0,1fr)!important;gap:4px!important}
+#app.rpg477.town494 .shopgoods419{overflow:hidden!important;gap:2px!important}
+#app.rpg477.town494 .shopgoods419>button{min-height:20px!important;padding:1px 3px!important;font-size:10px!important}
+#app.rpg477.town494 .shopGrid459{flex:1 1 0!important;min-height:48px!important}
+#app.rpg477.town494 .townTrack494>.personalitem40{flex:0 0 calc((100% - 10px)/3)!important;min-width:0!important;height:100%!important;overflow:hidden!important;display:flex!important;flex-direction:column!important;padding:2px!important;font-size:10px!important}
+#app.rpg477.town494 .townTrack494>.personalitem40 img{height:35%!important;min-height:12px!important;flex:none!important;object-fit:contain!important}
+#app.rpg477.town494 .townTrack494>.personalitem40 button{min-height:17px!important;padding:0 2px!important;font-size:9px!important}
+#app.rpg477.town494 .speech419{max-height:none!important;overflow:auto!important;font-size:10px!important}
+#app.rpg477.world503 .body474{display:flex!important;min-height:0!important;overflow:hidden!important}
+#app .worldFrame503{display:grid!important;grid-template-columns:1fr 1fr;gap:6px;width:100%;height:100%;min-height:0}
+#app .worldFrame503>.card{display:flex!important;flex-direction:column;min-height:0;overflow:hidden}
+#app .worldFrame503 .world-map{flex:1!important;min-height:0!important;height:auto!important;max-height:none!important;overflow:hidden!important}
+#app .worldFrame503 .world-map button{font-size:10px!important;min-height:22px!important}
+#app .worldFrame503 small{font-size:9px!important;line-height:1.15!important}
+#app .worldList503{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));grid-auto-rows:1fr;gap:4px;min-height:0}
+#app .worldList503 button{background:#f4e7ca!important;border:1px solid #b69e73!important;border-radius:5px!important;white-space:normal!important;font-size:11px!important;margin:0!important;min-height:0!important}
+.select503{background:#dfcda5!important;color:#392b20!important;border:1px solid #b69e73!important;border-radius:5px!important;white-space:normal!important}
+.picker503{position:absolute!important;inset:0!important;z-index:99999!important;background:#21180e99;display:flex;align-items:center;justify-content:center;padding:10px;box-sizing:border-box}
+.pickerPanel503{width:min(85%,560px);max-height:95%;overflow:auto;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:6px;padding:10px;background:#eee0c1;border:1px solid #a68a55;border-radius:8px}
+.pickerPanel503 button{background:#dfcda5;color:#392b20;border:1px solid #b69e73;min-height:32px;font-size:12px;border-radius:4px}
+.pickerPanel503 button.primary{background:#536b50;color:white}
