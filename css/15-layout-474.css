@@ -410,3 +410,36 @@ html.autoLandscape482 #app.talk479 .choices479 button{font-size:12px!important;m
 #app.rpg477 .pages484 button:disabled{opacity:.3}
 html.autoLandscape482 #app.rpg477 .rail485{touch-action:pan-x}
 @media(prefers-reduced-motion:reduce){#app.rpg477 .track485{transition:none!important}}
+
+/* v4.86 single fixed content frame; only repeated cards slide */
+#app.rpg477.frame486 .heading477{gap:6px;min-height:28px;align-items:center}
+#app.rpg477.frame486 .tools486{display:flex;align-items:center;gap:4px;margin-left:auto}
+#app.rpg477.frame486 .tools486 button{min-height:25px!important;font-size:11px!important;padding:3px 8px!important;white-space:nowrap}
+#app.rpg477.frame486 .tools486 .tabs22{display:flex!important;gap:3px;margin:0!important}
+#app.rpg477.frame486 .list486{position:relative;display:flex;align-items:stretch;min-height:0;min-width:0;width:100%;height:100%;padding:0 22px;box-sizing:border-box}
+#app.rpg477.frame486 .viewport486{flex:1;min-width:0;min-height:0;overflow:hidden;touch-action:pan-y}
+#app.rpg477.frame486 .track486{display:flex;gap:6px;align-items:stretch;height:100%;width:100%;transition:transform .22s ease}
+#app.rpg477.frame486 .track486>*{flex:0 0 calc((100% - (var(--count486) - 1)*6px)/var(--count486));min-width:0;max-width:none!important;box-sizing:border-box}
+#app.rpg477.frame486 .prev486,#app.rpg477.frame486 .next486{position:absolute;top:50%;transform:translateY(-50%);min-height:30px!important;width:20px!important;padding:0!important;z-index:3;font-size:19px!important;background:#cfbb94!important;color:#392b20!important}
+#app.rpg477.frame486 .prev486{left:0}#app.rpg477.frame486 .next486{right:0}
+#app.rpg477.frame486 .prev486:disabled,#app.rpg477.frame486 .next486:disabled{opacity:.25}
+#app.rpg477.frame486 .prev486[hidden],#app.rpg477.frame486 .next486[hidden]{display:none!important}
+#app.rpg477.questList486 .body474{display:flex!important;flex-direction:column;min-height:0;overflow:hidden!important}
+#app.rpg477.questList486 .quests444{display:flex!important;flex:1;min-height:0;width:100%;height:100%;margin:0!important}
+#app.rpg477.questList486 .quest23{display:flex!important;flex-direction:column!important;align-items:stretch!important;justify-content:flex-start!important;height:100%!important;min-height:0!important;padding:4px!important;gap:4px!important;background:#f6ead0!important;border:1px solid #bba47d!important;border-radius:5px!important;overflow:hidden!important}
+#app.rpg477.questList486 .quest23 .questImage486{width:100%;height:0;min-height:0;flex:1;object-fit:cover;border-radius:3px}
+#app.rpg477.questList486 .quest23 .qicon23,#app.rpg477.questList486 .quest23>span[aria-hidden]{display:none!important}
+#app.rpg477.questList486 .quest23 .qtext23{display:flex;flex-direction:column;gap:2px;white-space:normal;text-align:left}
+#app.rpg477.questList486 .quest23 .qtext23 b{font-size:12px!important}
+#app.rpg477.questList486 .quest23 small{font-size:10px!important}
+#app.rpg477.questDetail486 .body474{display:flex!important;min-height:0;overflow:hidden!important}
+#app.rpg477.questDetail486 .dispatch486{display:grid;grid-template-columns:minmax(0,42fr) minmax(0,58fr);gap:8px;width:100%;height:100%;min-height:0}
+#app.rpg477.questDetail486 .dispatch486>section{min-width:0;min-height:0;padding:4px;overflow:auto;display:flex;flex-direction:column;gap:3px}
+#app.rpg477.questDetail486 .questImage486{width:100%;height:clamp(40px,16vh,100px);object-fit:cover;border-radius:4px}
+#app.rpg477.questDetail486 .questActions486 label{font-size:11px!important;margin:0!important}
+#app.rpg477.questDetail486 .questActions486 button{min-height:26px!important;padding:3px!important}
+#app.rpg477.questDetail486 .questActions486 .primary{margin-top:auto!important}
+dialog.info486{background:#f1e3c7;color:#392b20;border:1px solid #bba47d;border-radius:5px;width:min(90vw,700px);max-height:85dvh;padding:12px}
+dialog.info486::backdrop{background:#0009}
+html.autoLandscape482 #app.rpg477.frame486 .viewport486{touch-action:pan-x}
+html.autoLandscape482 #app.rpg477.questDetail486 .questImage486{height:clamp(40px,16dvw,100px)}
