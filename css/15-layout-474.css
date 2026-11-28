@@ -515,3 +515,6 @@ html.autoLandscape482 .tutorialLayout491{height:clamp(95px,38dvw,175px)}
 #app.rpg477.inventory487 .tools486{flex:1 1 auto!important;min-width:0;justify-content:flex-end}
 #app.rpg477.inventory487 .invTabs459{display:flex!important;flex-wrap:wrap!important;justify-content:flex-end!important;align-items:center!important;gap:3px!important;min-width:0;width:auto!important}
 #app.rpg477.inventory487 .invTabs459 button{flex:0 0 auto!important;width:auto!important;min-width:max-content!important;max-width:none!important;height:auto!important;min-height:26px!important;padding:4px 9px!important;box-sizing:border-box!important;white-space:nowrap!important;line-height:1.25!important;font-size:11px!important;overflow:visible!important;text-overflow:clip!important;word-break:keep-all!important}
+
+#app .invTabs459{flex:none!important;justify-content:end!important;align-items:center!important}
+#app .invTabs459 button{display:flex!important;align-items:center!important;justify-content:center!important;min-height:28px!important;line-height:1.25!important;letter-spacing:0!important;overflow:hidden!important;border-radius:5px!important}
