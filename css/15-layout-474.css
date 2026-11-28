@@ -472,3 +472,10 @@ html.autoLandscape482 #app.rpg477.questDetail486 .questInfo486 .questImage486{he
 #app.rpg477.inventory487 .invTabs459 button{font-size:10px!important;padding:2px 5px!important;min-height:24px!important}
 #app.rpg477.operation487 .operationGrid487{display:grid!important;grid-template-columns:repeat(3,minmax(0,1fr))!important;grid-template-rows:repeat(2,minmax(0,1fr));gap:5px}
 #app.rpg477.operation487 .operationGrid487 button{min-height:36px!important;padding:5px!important}
+
+/* v4.88: conversation controls independent of retired dropdown */
+#app.talk479 .vnFooter427[hidden]{display:none!important}
+#app.talk479 .direct488{max-height:42%!important;overflow:auto;flex-shrink:0}
+#app.talk479 .direct488 button{min-height:30px!important;line-height:1.25!important}
+#app.talk479 .talkActions483{flex-shrink:0!important;z-index:10!important}
+#app.talk479 .talkDone488{font-size:11px!important;color:#786447!important}
