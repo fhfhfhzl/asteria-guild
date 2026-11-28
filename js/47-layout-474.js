@@ -14,7 +14,7 @@ function element(tag,cls,html){const x=document.createElement(tag);x.className=c
 function action(label,fn,icon){const b=element('button','nav474');b.type='button';if(icon){const i=element('img','');i.src='assets/ui/'+icon+'.webp';i.alt='';b.append(i)}b.append(element('span','',label));b.onclick=fn;return b}
 function panelTabs(){const t=element('div','tabs474');for(const [label,fn] of [['의뢰',()=>quest419('open')],['이벤트',()=>go('이야기')],['마을',()=>go('외출')],['기타',()=>go('더보기')]]){const b=action(label,fn);if((label==='의뢰'&&['길드','의뢰'].includes(screen))||(label==='이벤트'&&screen==='이야기')||(label==='마을'&&['외출','마을 교류'].includes(screen))||(label==='기타'&&screen==='더보기'))b.classList.add('active474');t.append(b)}return t}
 function freshPlan(){const p=element('section','plan40');p.append(element('h2','','월간 일정'));const w=element('div','weeks40');life34().schedule.forEach((v,i)=>{const l=element('label','');const b=action(esc(v)+' ▾',()=>pickSlot419(i));b.className='slot419';const im=element('img','activity43');im.src=scenes30[lifeActivities40[v]?.[1]||'guild'];im.alt='';l.append(im,element('small','',(i+1)+'주'),b);w.append(l)});p.append(w);const b=action('이번 달 시작 ▸',()=>{go('길드');begin34()});b.className='primary wide';p.append(b);return p}
-render=function(){original();const app=$('#app'),m=$('main');if(!app)return;app.classList.remove('layout474','detail475'); if(!state){const v=app.querySelector('.title small');if(v)v.textContent='v4.94 · 길의 등불';} orientation475();if(!state||!m||batch34||state.dialogue||state.final437)return;
+render=function(){original();const app=$('#app'),m=$('main');if(!app)return;app.classList.remove('layout474','detail475'); if(!state){const v=app.querySelector('.title small');if(v)v.textContent='v4.95 · 길의 등불';} orientation475();if(!state||!m||batch34||state.dialogue||state.final437)return;
 const home=screen==='길드',l=life34(),stage=m.querySelector('.stage43'),controls=m.querySelector('.controls43');if(home&&(!stage||!controls))return;
 const hero=stage?.querySelector('.lifehero40'),oldMeters=stage?.querySelector('.meters40');const bg=hero?.querySelector('.scene30')?.getAttribute('src')||'assets/scenes/new-guild.webp';
 const art=element('div','art474');if(hero){const j=hero.querySelector('.jia40');if(j)art.append(j);const label=hero.querySelector('.heroLabel40');if(label)art.append(label)}else{art.innerHTML='<div class="jia40 standing45">'+portrait('지아 메르벨')+'</div><div class="heroLabel40"><h1>지아 메르벨</h1><span>'+esc(guildStage433())+'</span><small>남은 기간 '+Math.max(0,1200-Math.floor(state.time/1440))+'일</small></div>'}
@@ -28,7 +28,7 @@ if(!bottom.children.length){const b=action(home?'월간 일정':'길드 · 월�
 const wallet=element('div','wallet474','<span>보유금</span> <strong>'+money(l.wallet)+'</strong>');panel.append(panelTabs(),body);right.append(wallet,panel,bottom);
 const left=element('div','left474');left.append(art,nav);m.replaceChildren(left,right);m.style.setProperty('--bg474','url("'+bg+'")');app.classList.add('layout474');app.classList.toggle('detail475',!home);
 const h=app.querySelector('header');if(h){const e=h.querySelector('.eyebrow');if(e){e.replaceChildren(element('div','brand474','<strong>길의 등불</strong><small>'+month40()+'</small>'));const links=element('div','header474');links.append(action('기록',()=>go('인생 기록')),action('생활',()=>lifePage424('요리')),action('설정',()=>go('더보기')));if(l.run||blocked34())links.querySelectorAll('button').forEach(b=>b.disabled=true);e.append(links)}h.querySelector('.hud')?.remove();}
-const version=app.querySelector('.title small');if(version)version.textContent='v4.94 · 길의 등불';
+const version=app.querySelector('.title small');if(version)version.textContent='v4.95 · 길의 등불';
 };render();
 })();
 
@@ -82,12 +82,12 @@ render=function(){
  left.querySelector('.navGrid474')?.remove();
  const tabs=panel.querySelector('.tabs474');tabs?.remove();panel.querySelector('.more476')?.remove();
  const extra=body.querySelector('.extra474');if(extra)extra.hidden=true;
- if(ready&&!planning){const grid=el('div','cards477');const n=state.quests.filter(q=>q.status==='open').length;grid.append(button('의뢰 게시판',quest,scenes30.quest,n+'건 접수 가능'),button('월간 일정',openPlan,scenes30.study,'이번 달 계획'),button('마을 교류',()=>leave('외출'),scenes30.city),button('길드 운영',()=>leave('길드 운영'),scenes30.guild));panel.replaceChildren(grid);right.querySelector('.schedule474')?.remove();}
+ if(ready&&!planning){const grid=el('div','cards477');const n=state.quests.filter(q=>q.status==='open').length;grid.append(button('생활',()=>{planning=false;lifePage424('요리')},scenes30.rest),button('월간 일정',openPlan,scenes30.study,'이번 달 계획'),button('마을 교류',()=>leave('외출'),scenes30.city),button('길드 관리',()=>leave('길드 운영'),scenes30.guild));panel.replaceChildren(grid);right.querySelector('.schedule474')?.remove();}
  else if(ready&&planning){const p=el('div','heading477');p.append(el('h2','','월간 일정'),button('닫기',()=>{planning=false;render()}));panel.replaceChildren(p,plan);right.querySelector('.schedule474')?.remove();}
  else{const p=el('div','heading477');p.append(el('h2','',home?'길드 소식':screen));if(!home)p.append(button('홈',()=>leave('길드')));panel.prepend(p);if(home&&extra&&extra.children.length){extra.hidden=false;body.append(extra)}right.querySelector('.schedule474')?.remove();}
  const old=app.querySelector('.dock477');old?.remove();const dock=el('div','dock477');dock.setAttribute('aria-label','주 메뉴');
  const locked=!!(l.run||blocked34());
- const entries=[['홈','길드','home',()=>leave('길드')],['의뢰','의뢰','book',quest],['직원','직원','users',()=>leave('직원')],['소지품','소지품','bag',()=>leave('소지품')],['메뉴','더보기','settings',()=>leave('더보기')]];
+ const entries=[['홈','길드','home',()=>leave('길드')],['마을','외출','city',()=>leave('외출')],['관리','길드 운영','guild',()=>leave('길드 운영')],['소지품','소지품','bag',()=>leave('소지품')],['메뉴','더보기','settings',()=>leave('더보기')]];
  for(const [n,s,k,fn] of entries){const b=button(n,fn,'assets/ui/'+k+'.webp');if(screen===s)b.classList.add('selected477');b.disabled=locked&&!['길드','의뢰'].includes(s);dock.append(b)}
  app.append(dock);
  if(screen==='더보기'){const quick=el('div','quick477');for(const [n,fn] of [['능력치',()=>leave('능력치')],['마을',()=>leave('외출')],['길드 운영',()=>leave('길드 운영')],['생활',()=>{planning=false;lifePage424('요리')}],['인생 기록',()=>leave('인생 기록')],['신문',()=>leave('신문')]])quick.append(button(n,fn));body.prepend(quick)}
@@ -532,5 +532,40 @@ render=function(){
   if(speech)right.append(speech);
  }
  body.replaceChildren(frame);
+};render();
+})();
+
+/* v4.95: compact home shortcuts and unified management */
+(function(){
+const prev=render;
+function el(t,c,txt){const e=document.createElement(t);e.className=c||'';if(txt!==undefined)e.textContent=txt;return e}
+function button(label,fn,icon){const b=el('button','',label);b.type='button';b.onclick=fn;if(icon){const i=el('img');i.src='assets/ui/'+icon+'.webp';i.alt='';b.prepend(i)}return b}
+render=function(){
+ prev();const app=$('#app');if(!state||!app||state.dialogue||state.final437)return;
+ const mail=app.querySelector('.mail484');
+ if(mail){const art=mail.parentElement,strip=el('div','homeShortcuts495');mail.before(strip);strip.append(mail);
+  const news=button('',()=>showNews33(),'mail');news.setAttribute('aria-label','신문');news.title='신문';news.className='news495';news.querySelector('img').style.display='none';news.append(el('span','newspaper495','▤'));
+  const quests=button('',()=>quest419('open'),'book');quests.setAttribute('aria-label','의뢰 게시판');quests.title='의뢰 게시판';
+  strip.append(news,quests);
+ }
+ const dock=app.querySelector('.dock477');if(dock&&['직원','생활','운영','모험가','장비','길드 운영'].includes(screen)){dock.querySelectorAll('button').forEach(b=>b.classList.toggle('selected477',b.textContent.trim()==='관리'))}
+ const body=app.querySelector('.body474'),heading=app.querySelector('.heading477');if(!body)return;
+ if(screen==='길드 운영'){
+  const h=heading?.querySelector('h2');if(h)h.textContent='길드 관리';
+  const menu=body.querySelector('.menu40');if(menu){
+   menu.classList.add('management495');
+   const entries=[['직원',()=>go('직원'),'users'],['생활',()=>lifePage424('요리'),'rest'],['재정·시설',()=>go('운영'),'guild'],['모험가',()=>go('모험가'),'users'],['의뢰 보고',()=>quest419('active'),'book'],['장비',()=>go('장비'),'bag'],['경쟁 길드',()=>go('경쟁'),'guild']];
+   menu.replaceChildren(...entries.map(([n,f,i])=>button(n,f,i)));
+  }
+ }
+ if(['직원','생활','운영','모험가','장비','경쟁'].includes(screen)&&heading){const back=button('‹ 관리',()=>go('길드 운영'));back.className='manageBack495';heading.querySelector('.tools486')?.prepend(back)}
+ if(screen==='의뢰'||screen==='외출'||screen==='길드 운영'){
+  for(const b of body.querySelectorAll('button')){const text=b.textContent.trim(),act=b.getAttribute('onclick')||'';if(/몬스터 의뢰.*80종|도감 기반 현장 의뢰/.test(text)||/^mOpen13\(/.test(act))b.hidden=true}
+ }
+ if(screen==='더보기'){
+  const quick=body.querySelector('.quick477')||body;
+  for(const b of [...quick.querySelectorAll('button')])if(['신문','생활','길드 운영'].includes(b.textContent.trim()))b.remove();
+  quick.append(button('몬스터 도감',()=>showHistory('몬스터 도감'),'book'));
+ }
 };render();
 })();
