@@ -14,7 +14,7 @@ function element(tag,cls,html){const x=document.createElement(tag);x.className=c
 function action(label,fn,icon){const b=element('button','nav474');b.type='button';if(icon){const i=element('img','');i.src='assets/ui/'+icon+'.webp';i.alt='';b.append(i)}b.append(element('span','',label));b.onclick=fn;return b}
 function panelTabs(){const t=element('div','tabs474');for(const [label,fn] of [['의뢰',()=>quest419('open')],['이벤트',()=>go('이야기')],['마을',()=>go('외출')],['기타',()=>go('더보기')]]){const b=action(label,fn);if((label==='의뢰'&&['길드','의뢰'].includes(screen))||(label==='이벤트'&&screen==='이야기')||(label==='마을'&&['외출','마을 교류'].includes(screen))||(label==='기타'&&screen==='더보기'))b.classList.add('active474');t.append(b)}return t}
 function freshPlan(){const p=element('section','plan40');p.append(element('h2','','월간 일정'));const w=element('div','weeks40');life34().schedule.forEach((v,i)=>{const l=element('label','');const b=action(esc(v)+' ▾',()=>pickSlot419(i));b.className='slot419';const im=element('img','activity43');im.src=scenes30[lifeActivities40[v]?.[1]||'guild'];im.alt='';l.append(im,element('small','',(i+1)+'주'),b);w.append(l)});p.append(w);const b=action('이번 달 시작 ▸',()=>{go('길드');begin34()});b.className='primary wide';p.append(b);return p}
-render=function(){original();const app=$('#app'),m=$('main');if(!app)return;app.classList.remove('layout474','detail475'); if(!state){const v=app.querySelector('.title small');if(v)v.textContent='v5.01 · 길의 등불';} orientation475();if(!state||!m||batch34||state.dialogue||state.final437)return;
+render=function(){original();const app=$('#app'),m=$('main');if(!app)return;app.classList.remove('layout474','detail475'); if(!state){const v=app.querySelector('.title small');if(v)v.textContent='v5.02 · 길의 등불';} orientation475();if(!state||!m||batch34||state.dialogue||state.final437)return;
 const home=screen==='길드',l=life34(),stage=m.querySelector('.stage43'),controls=m.querySelector('.controls43');if(home&&(!stage||!controls))return;
 const hero=stage?.querySelector('.lifehero40'),oldMeters=stage?.querySelector('.meters40');const bg=hero?.querySelector('.scene30')?.getAttribute('src')||'assets/scenes/new-guild.webp';
 const art=element('div','art474');if(hero){const j=hero.querySelector('.jia40');if(j)art.append(j);const label=hero.querySelector('.heroLabel40');if(label)art.append(label)}else{art.innerHTML='<div class="jia40 standing45">'+portrait('지아 메르벨')+'</div><div class="heroLabel40"><h1>지아 메르벨</h1><span>'+esc(guildStage433())+'</span><small>남은 기간 '+Math.max(0,1200-Math.floor(state.time/1440))+'일</small></div>'}
@@ -28,7 +28,7 @@ if(!bottom.children.length){const b=action(home?'월간 일정':'길드 · 월�
 const wallet=element('div','wallet474','<span>보유금</span> <strong>'+money(l.wallet)+'</strong>');panel.append(panelTabs(),body);right.append(wallet,panel,bottom);
 const left=element('div','left474');left.append(art,nav);m.replaceChildren(left,right);m.style.setProperty('--bg474','url("'+bg+'")');app.classList.add('layout474');app.classList.toggle('detail475',!home);
 const h=app.querySelector('header');if(h){const e=h.querySelector('.eyebrow');if(e){e.replaceChildren(element('div','brand474','<strong>길의 등불</strong><small>'+month40()+'</small>'));const links=element('div','header474');links.append(action('기록',()=>go('인생 기록')),action('생활',()=>lifePage424('요리')),action('설정',()=>go('더보기')));if(l.run||blocked34())links.querySelectorAll('button').forEach(b=>b.disabled=true);e.append(links)}h.querySelector('.hud')?.remove();}
-const version=app.querySelector('.title small');if(version)version.textContent='v5.01 · 길의 등불';
+const version=app.querySelector('.title small');if(version)version.textContent='v5.02 · 길의 등불';
 };render();
 })();
 
@@ -658,7 +658,7 @@ render=function(){
  const controls=title.querySelector('.av-settings');
  const actions=[...title.querySelectorAll('button')].filter(b=>!b.closest('.av-settings')&&/^(새로운 이야기|이어하기|저장 데이터 가져오기)$/.test(b.textContent.trim()));
  const stage=el('div','titleStage500'),art=el('img','titleArt500');art.src='assets/scenes/new-guild.webp';art.alt='';
- const shade=el('div','titleShade500'),brand=el('div','titleBrand500'),menu=el('div','titleMenu500'),version=el('small','titleVersion500','v5.01 · 길의 등불');
+ const shade=el('div','titleShade500'),brand=el('div','titleBrand500'),menu=el('div','titleMenu500'),version=el('small','titleVersion500','v5.02 · 길의 등불');
  brand.append(el('small','','ASTERIA CHRONICLES'),el('h1','','길의 등불'),el('p','','떠나는 사람에게 길을 밝히고, 돌아오는 사람에게 불을 밝혀 두리라.'));
  if(!settings){
   for(const b of actions)menu.append(b);
@@ -689,3 +689,5 @@ render=function(){
  }
 };render();
 })();
+
+(function(){const prev=render;render=function(){prev();const app=$('#app');if(!app)return;app.classList.toggle('roster502',!!state&&screen==='모험가'&&!selectedPerson&&!state.dialogue);if(!app.classList.contains('roster502'))return;const list=app.querySelector('#member-list');if(!list)return;for(const b of list.querySelectorAll('.visual23')){const img=b.querySelector('img');if(img)img.loading='eager';} };render()})();

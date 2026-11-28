@@ -665,3 +665,17 @@ html.autoLandscape482 #app.title500 .titleBrand500 h1{font-size:clamp(30px,6dvh,
 #app .speed501 button.active501{background:#536d51!important;color:#fff0d3!important}
 #app .lifeToolbar498 .lifeTabs424 button{background:#30251eef!important;border:1px solid #d5bf90!important;min-width:48px!important;opacity:1!important}
 #app .lifeToolbar498 .lifeTabs424 button.primary{background:#536d51!important}
+
+/* v5.02 roster and dock */
+#app.rpg477 .dock477>.anchor501{padding:3px!important;position:relative!important;display:flex!important;align-items:center!important;justify-content:center!important}
+#app.rpg477 .dock477>.anchor501 .anchoredIcon501{position:absolute!important;left:calc(50% - 25px)!important;top:50%!important;transform:translate(-50%,-50%)!important}
+#app.rpg477 .dock477>.anchor501{padding-left:27px!important}
+#app.rpg477.roster502 .body474{display:flex!important;flex-direction:column!important;min-height:0!important;gap:4px!important}
+#app.rpg477.roster502 #member-list:not([hidden]){display:grid!important;grid-auto-flow:column!important;grid-template-columns:none!important;grid-auto-columns:calc((100% - 18px)/4)!important;grid-template-rows:minmax(0,1fr)!important;gap:6px!important;width:100%!important;max-width:none!important;flex:1 1 0!important;min-height:0!important;overflow-x:auto!important;overflow-y:hidden!important;scroll-snap-type:x mandatory;margin:0!important;padding:0!important}
+#app.rpg477.roster502 #member-list>.visual23:not([hidden]){display:flex!important;flex-direction:column!important;align-items:center!important;justify-content:flex-start!important;position:relative!important;width:100%!important;max-width:none!important;min-width:0!important;height:100%!important;min-height:0!important;padding:5px!important;margin:0!important;box-sizing:border-box!important;background:#f6e8ca!important;border:1px solid #b69b69!important;border-radius:5px!important;overflow:hidden!important;scroll-snap-align:start}
+#app.rpg477.roster502 .visual23 .portrait{position:relative!important;width:100%!important;height:46%!important;min-height:0!important;max-height:none!important;flex:none!important;margin:0!important;overflow:hidden!important}
+#app.rpg477.roster502 .visual23 .portrait img{position:absolute!important;inset:0!important;width:100%!important;height:100%!important;object-fit:cover!important;object-position:center 25%!important;max-width:none!important;max-height:none!important}
+#app.rpg477.roster502 .visualbody23{display:flex!important;flex-direction:column!important;align-items:center!important;gap:2px!important;width:100%!important;min-width:0!important;min-height:0!important;flex:1!important;padding:3px 0!important;overflow:hidden!important}
+#app.rpg477.roster502 .visualbody23>b,#app.rpg477.roster502 .visualbody23 small{white-space:normal!important;overflow:visible!important;text-overflow:clip!important;font-size:11px!important;line-height:1.2!important;text-align:center!important}
+#app.rpg477.roster502 .job23{max-width:100%!important;white-space:normal!important}
+#app.rpg477.roster502 .visualbody23 .bar{width:100%!important}
