@@ -621,3 +621,30 @@ html.autoLandscape482 #app.rpg477.life498 .lifeViewport498{touch-action:pan-x}
 #app.rpg477.settings499 .saveCards499{grid-template-columns:repeat(3,minmax(0,1fr));grid-template-rows:minmax(0,1fr)}
 #app.rpg477.settings499 .environment499{grid-auto-rows:minmax(0,1fr);overflow:auto}
 #app.rpg477.settings499 .settingControl499 button{background:#e1cca3!important;border:1px solid #b69b69!important;border-radius:4px!important;min-height:24px!important;font-size:11px!important}
+
+/* v5.00 full-bleed title and bounded settings */
+#app.title500{width:100%!important;max-width:none!important;height:100dvh!important;min-height:0!important;padding:0!important;margin:0!important;overflow:hidden!important}
+html.autoLandscape482 #app.title500{height:100%!important}
+#app.title500 .title{display:block!important;position:relative!important;width:100%!important;max-width:none!important;height:100%!important;min-height:0!important;max-height:none!important;padding:0!important;margin:0!important;overflow:hidden!important;background:#38291e!important}
+#app.title500 .titleStage500{position:relative;isolation:isolate;width:100%;height:100%;display:grid;grid-template-columns:minmax(0,56fr) minmax(0,44fr);align-items:center;gap:12px;padding:12px 5%;box-sizing:border-box;overflow:hidden;color:#fff0d3}
+#app.title500 .titleArt500,#app.title500 .titleShade500{position:absolute;inset:0;width:100%!important;height:100%!important;max-height:none!important;object-fit:cover;z-index:-2}
+#app.title500 .titleShade500{z-index:-1;background:linear-gradient(90deg,#24170ec9,#24170e55 50%,#24170ecc)}
+#app.title500 .titleBrand500{text-align:center;text-shadow:0 2px 6px #000;padding:5px;min-width:0}
+#app.title500 .titleBrand500 small{font-size:11px!important;letter-spacing:2px;color:#f4dba6!important}
+#app.title500 .titleBrand500 h1{font-size:clamp(30px,6vw,62px)!important;line-height:1.15;margin:6px 0!important;color:#ffe4ad!important}
+#app.title500 .titleBrand500 p{font-size:12px!important;line-height:1.5;color:#f7e8cd!important;max-width:240px;margin:8px auto}
+#app.title500 .titleMenu500{display:flex;flex-direction:column;gap:5px;min-width:0;min-height:0;max-height:90%}
+#app.title500 .titleMenu500>button{width:100%!important;min-height:30px!important;height:auto!important;margin:0!important;padding:6px 9px!important;font-size:13px!important;border:1px solid #d0b47a!important;border-radius:5px!important;background:#382b21e8!important;color:#fff0d3!important;white-space:nowrap}
+#app.title500 .titleMenu500>button.primary{background:#526b4e!important}
+#app.title500 .titleMenu500>button:disabled{opacity:.45}
+#app.title500 .titleVersion500{position:absolute;right:8px;bottom:5px;color:#f1dec0!important;font-size:10px!important}
+#app.title500 .titleSettings500{background:#f2e4c9f5;border:1px solid #b69b69;border-radius:6px;color:#392b20;padding:7px;max-height:100%;overflow:auto}
+#app.title500 .titleSettingsHead500{display:flex;align-items:center;justify-content:space-between;gap:5px;margin-bottom:4px}
+#app.title500 .titleSettingsHead500 h2{font-size:15px!important;color:#392b20!important;margin:0!important}
+#app.title500 .titleFields500{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:4px;align-items:center}
+#app.title500 .titleFields500 label{display:flex!important;flex-wrap:wrap;align-items:center;gap:3px;min-width:0;font-size:11px!important;color:#392b20!important;margin:0!important;padding:3px!important}
+#app.title500 .titleFields500 input[type=checkbox]{width:15px!important;height:15px!important;margin:0!important}
+#app.title500 .titleFields500 input[type=range],#app.title500 .titleFields500 select{width:100%!important;min-width:0!important;margin:0!important;font-size:11px!important;min-height:22px!important}
+#app.title500 .titleSettings500 button{min-height:24px!important;margin:0!important;padding:3px 5px!important;font-size:11px!important;background:#dfcca3!important;color:#392b20!important;border:1px solid #b69b69!important;border-radius:3px!important}
+html.autoLandscape482 #app.title500 .titleBrand500 h1{font-size:clamp(30px,6dvh,62px)!important}
+@media (orientation:portrait){html:not(.autoLandscape482) #app.title500 .titleStage500{grid-template-columns:1fr;align-content:center}}
