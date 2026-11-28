@@ -518,3 +518,37 @@ html.autoLandscape482 .tutorialLayout491{height:clamp(95px,38dvw,175px)}
 
 #app .invTabs459{flex:none!important;justify-content:end!important;align-items:center!important}
 #app .invTabs459 button{display:flex!important;align-items:center!important;justify-content:center!important;min-height:28px!important;line-height:1.25!important;letter-spacing:0!important;overflow:hidden!important;border-radius:5px!important}
+
+/* v4.94 town single-screen dashboard */
+#app.rpg477.town494 .body474{display:flex!important;flex-direction:column;overflow:hidden!important;min-height:0;padding:2px!important}
+#app.rpg477.town494 .heading477{min-height:28px!important;gap:4px}
+#app.rpg477.town494 .tools486{min-width:0;flex-wrap:wrap;justify-content:flex-end;gap:3px}
+#app.rpg477.town494 .townSelect494{width:auto!important;min-width:85px;max-width:120px;min-height:24px!important;height:24px!important;font-size:11px!important;padding:1px 4px!important;margin:0!important}
+#app.rpg477.town494 .townwallet413,#app.rpg477.town494 .townclock418{display:flex!important;align-items:center;gap:3px;font-size:10px!important;margin:0!important;padding:0!important}
+#app.rpg477.town494 .townclock418 button{min-height:22px!important;font-size:10px!important}
+#app.rpg477.town494 .townMapFrame494{flex:1;min-height:0;width:100%;display:flex;gap:4px}
+#app.rpg477.town494 .townMapFrame494 .townplan419{flex:1;width:100%!important;height:100%!important;min-height:0!important;max-height:none!important;aspect-ratio:auto!important;margin:0!important}
+#app.rpg477.town494 .mapart420{width:100%!important;height:100%!important;object-fit:fill!important}
+#app.rpg477.town494 .townMapExtra494{width:24%;overflow:auto;font-size:11px}
+#app.rpg477.town494 .townFrame494{flex:1;min-height:0;display:grid;grid-template-columns:minmax(0,46fr) minmax(0,54fr);gap:5px;width:100%;height:100%}
+#app.rpg477.town494 .shopart419{height:100%!important;min-height:0!important;max-height:none!important;aspect-ratio:auto!important;width:100%!important;background-size:cover!important;background-position:center!important;position:relative;overflow:hidden;border-radius:5px}
+#app.rpg477.town494 .shopart419>img,#app.rpg477.town494 .shopart419>.portrait{height:95%!important;max-height:95%!important;width:100%!important;object-fit:contain!important;object-position:center bottom!important}
+#app.rpg477.town494 .townRight494{display:flex;flex-direction:column;min-height:0;min-width:0;gap:3px}
+#app.rpg477.town494 .shopgoods419{flex:1;min-height:0;min-width:0;display:flex!important;flex-direction:column;gap:3px;padding:3px!important;overflow:auto!important;height:auto!important;max-height:none!important;margin:0!important}
+#app.rpg477.town494 .shopgoods419 h3{font-size:12px!important;margin:0!important}
+#app.rpg477.town494 .shopGrid459{flex:1;min-height:0;position:relative;display:flex!important;padding:0 16px!important;margin:0!important;gap:0}
+#app.rpg477.town494 .townView494{flex:1;overflow:hidden;min-width:0;min-height:0;touch-action:pan-y}
+#app.rpg477.town494 .townTrack494{height:100%;display:flex;gap:5px;transition:transform .2s ease}
+#app.rpg477.town494 .townTrack494>.shopSlot459{flex:0 0 calc((100% - (var(--townCount) - 1)*5px)/var(--townCount));min-width:0!important;min-height:0!important;height:100%!important;display:flex!important;flex-direction:column;align-items:center;padding:3px!important;gap:2px;overflow:hidden}
+#app.rpg477.town494 .shopSlot459 img{width:100%!important;height:0!important;flex:1;min-height:0;object-fit:contain!important}
+#app.rpg477.town494 .shopSlot459 span,#app.rpg477.town494 .shopSlot459 button{font-size:10px!important;line-height:1.2!important;white-space:normal!important;min-height:22px!important;margin:0!important}
+#app.rpg477.town494 .townPrev494,#app.rpg477.town494 .townNext494{position:absolute;top:50%;transform:translateY(-50%);width:15px!important;padding:0!important;min-height:24px!important;z-index:2}
+#app.rpg477.town494 .townPrev494{left:0}#app.rpg477.town494 .townNext494{right:0}
+#app.rpg477.town494 .speech419{flex:0 1 auto;max-height:42%;min-height:0;margin:0!important;padding:4px!important;overflow:auto!important}
+#app.rpg477.town494 .speech419 p{font-size:11px!important;line-height:1.3!important;margin:2px 0!important}
+#app.rpg477.town494 .speech419 button{min-height:23px!important;font-size:10px!important;padding:2px 5px!important}
+#app.rpg477.town494 .townClosed494{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:7px;background:#f4e8cc;border-radius:5px;text-align:center;padding:8px}
+#app.rpg477.town494 .townClosed494 h3{font-size:20px!important}
+#app.rpg477.citizen494 .citizenContent494{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:6px;align-content:start;overflow:auto;min-height:0;flex:1}
+#app.rpg477.citizen494 .citizenContent494 button,#app.rpg477.citizen494 .citizenContent494 select{min-height:28px!important;font-size:12px!important;color:#392b20;background:#ddcba5;border:1px solid #b69e73}
+html.autoLandscape482 #app.rpg477.town494 .townView494{touch-action:pan-x}
