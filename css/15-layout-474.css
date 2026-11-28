@@ -740,3 +740,15 @@ html.autoLandscape482 #app.title500 .titleBrand500 h1{font-size:clamp(30px,6dvh,
 #app .ledger505 .log{margin:2px 0!important;padding:3px!important;font-size:11px!important}
 #app .worldList503{overflow:hidden!important}
 #app .staticShop505 .personalitem40{min-width:0!important;width:100%!important;transform:none!important}
+
+/* v5.06 town full bleed */
+#app.rpg477.town494 .townFrame494{position:relative!important;display:block!important;overflow:hidden!important;border-radius:6px}
+#app.rpg477.town494 .townFrame494>.shopart419{position:absolute!important;inset:0!important;width:100%!important;height:100%!important;border:0!important}
+#app.rpg477.town494 .townFrame494>.shopart419>img,#app.rpg477.town494 .townFrame494>.shopart419>.portrait,#app.rpg477.town494 .townFrame494>.shopart419>.portrait img{position:absolute!important;inset:0!important;width:100%!important;height:100%!important;object-fit:cover!important;object-position:center 25%!important;max-width:none!important;max-height:none!important;transform:none!important}
+#app.rpg477.town494 .townFrame494>.townRight494{position:absolute!important;inset:0!important;display:block!important;pointer-events:none!important;z-index:3}
+#app.rpg477.town494 .townRight494>.shopgoods419,#app.rpg477.town494 .townRight494>.speech419,#app.rpg477.town494 .townRight494>.townClosed494{position:absolute!important;pointer-events:auto!important;background:#30271fdf!important;color:#fff1d3!important;border:1px solid #b69b69!important;border-radius:6px!important;box-sizing:border-box!important;overflow:hidden!important;margin:0!important;padding:7px!important}
+#app.rpg477.town494 .townRight494>.shopgoods419{top:8px;left:8px;width:43%!important;height:auto!important;max-height:53%!important}
+#app.rpg477.town494 .townRight494>.speech419{bottom:8px;left:8px;width:43%!important;height:auto!important;max-height:42%!important}
+#app.rpg477.town494 .townRight494>.townClosed494{left:8px;top:8px;width:43%!important;height:auto!important}
+#app.rpg477.town494 .townRight494 button{background:#eadbb9!important;color:#392b20!important;border:1px solid #b69b69!important;border-radius:4px!important}
+#app.rpg477.town494 .townRight494 small,#app.rpg477.town494 .townRight494 .muted{color:#e5d5b6!important}
