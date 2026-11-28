@@ -729,3 +729,14 @@ html.autoLandscape482 #app.title500 .titleBrand500 h1{font-size:clamp(30px,6dvh,
 #app.rpg477.town494 .townRight494.closed504{display:flex!important;flex-direction:column!important}
 #app.rpg477.town494 .townClosed494{height:100%!important;min-height:0!important;box-sizing:border-box!important;border:1px solid #b69b69!important}
 #app.rpg477.town494 .townClosed494 button{background:#dfcda5!important;border:1px solid #b69e73!important;border-radius:5px!important}
+
+/* v5.05 discrete page navigation */
+#app .staticTrack505,#app .staticShop505{display:grid!important;grid-template-columns:repeat(3,minmax(0,1fr));gap:5px;transform:none!important;width:100%!important;min-height:0;overflow:visible!important}
+#app .pageNav505{display:flex!important;align-items:center;justify-content:center;gap:8px;flex:none;min-height:25px;font-size:11px;color:inherit}
+#app .pageNav505 button{background:#dfcda5!important;color:#392b20!important;border:1px solid #b69e73!important;border-radius:4px!important;padding:3px 8px!important;font-size:11px!important;min-height:22px!important}
+#app .pageNav505 button:disabled{opacity:.45}
+#app .lifePanel498:has(.pageNav505){display:flex!important;flex-direction:column;gap:3px}
+#app .financeFrame504>.card{overflow:hidden!important}
+#app .ledger505 .log{margin:2px 0!important;padding:3px!important;font-size:11px!important}
+#app .worldList503{overflow:hidden!important}
+#app .staticShop505 .personalitem40{min-width:0!important;width:100%!important;transform:none!important}

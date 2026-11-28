@@ -14,7 +14,7 @@ function element(tag,cls,html){const x=document.createElement(tag);x.className=c
 function action(label,fn,icon){const b=element('button','nav474');b.type='button';if(icon){const i=element('img','');i.src='assets/ui/'+icon+'.webp';i.alt='';b.append(i)}b.append(element('span','',label));b.onclick=fn;return b}
 function panelTabs(){const t=element('div','tabs474');for(const [label,fn] of [['의뢰',()=>quest419('open')],['이벤트',()=>go('이야기')],['마을',()=>go('외출')],['기타',()=>go('더보기')]]){const b=action(label,fn);if((label==='의뢰'&&['길드','의뢰'].includes(screen))||(label==='이벤트'&&screen==='이야기')||(label==='마을'&&['외출','마을 교류'].includes(screen))||(label==='기타'&&screen==='더보기'))b.classList.add('active474');t.append(b)}return t}
 function freshPlan(){const p=element('section','plan40');p.append(element('h2','','월간 일정'));const w=element('div','weeks40');life34().schedule.forEach((v,i)=>{const l=element('label','');const b=action(esc(v)+' ▾',()=>pickSlot419(i));b.className='slot419';const im=element('img','activity43');im.src=scenes30[lifeActivities40[v]?.[1]||'guild'];im.alt='';l.append(im,element('small','',(i+1)+'주'),b);w.append(l)});p.append(w);const b=action('이번 달 시작 ▸',()=>{go('길드');begin34()});b.className='primary wide';p.append(b);return p}
-render=function(){original();const app=$('#app'),m=$('main');if(!app)return;app.classList.remove('layout474','detail475'); if(!state){const v=app.querySelector('.title small');if(v)v.textContent='v5.04 · 길의 등불';} orientation475();if(!state||!m||batch34||state.dialogue||state.final437)return;
+render=function(){original();const app=$('#app'),m=$('main');if(!app)return;app.classList.remove('layout474','detail475'); if(!state){const v=app.querySelector('.title small');if(v)v.textContent='v5.05 · 길의 등불';} orientation475();if(!state||!m||batch34||state.dialogue||state.final437)return;
 const home=screen==='길드',l=life34(),stage=m.querySelector('.stage43'),controls=m.querySelector('.controls43');if(home&&(!stage||!controls))return;
 const hero=stage?.querySelector('.lifehero40'),oldMeters=stage?.querySelector('.meters40');const bg=hero?.querySelector('.scene30')?.getAttribute('src')||'assets/scenes/new-guild.webp';
 const art=element('div','art474');if(hero){const j=hero.querySelector('.jia40');if(j)art.append(j);const label=hero.querySelector('.heroLabel40');if(label)art.append(label)}else{art.innerHTML='<div class="jia40 standing45">'+portrait('지아 메르벨')+'</div><div class="heroLabel40"><h1>지아 메르벨</h1><span>'+esc(guildStage433())+'</span><small>남은 기간 '+Math.max(0,1200-Math.floor(state.time/1440))+'일</small></div>'}
@@ -28,7 +28,7 @@ if(!bottom.children.length){const b=action(home?'월간 일정':'길드 · 월�
 const wallet=element('div','wallet474','<span>보유금</span> <strong>'+money(l.wallet)+'</strong>');panel.append(panelTabs(),body);right.append(wallet,panel,bottom);
 const left=element('div','left474');left.append(art,nav);m.replaceChildren(left,right);m.style.setProperty('--bg474','url("'+bg+'")');app.classList.add('layout474');app.classList.toggle('detail475',!home);
 const h=app.querySelector('header');if(h){const e=h.querySelector('.eyebrow');if(e){e.replaceChildren(element('div','brand474','<strong>길의 등불</strong><small>'+month40()+'</small>'));const links=element('div','header474');links.append(action('기록',()=>go('인생 기록')),action('생활',()=>lifePage424('요리')),action('설정',()=>go('더보기')));if(l.run||blocked34())links.querySelectorAll('button').forEach(b=>b.disabled=true);e.append(links)}h.querySelector('.hud')?.remove();}
-const version=app.querySelector('.title small');if(version)version.textContent='v5.04 · 길의 등불';
+const version=app.querySelector('.title small');if(version)version.textContent='v5.05 · 길의 등불';
 };render();
 })();
 
@@ -658,7 +658,7 @@ render=function(){
  const controls=title.querySelector('.av-settings');
  const actions=[...title.querySelectorAll('button')].filter(b=>!b.closest('.av-settings')&&/^(새로운 이야기|이어하기|저장 데이터 가져오기)$/.test(b.textContent.trim()));
  const stage=el('div','titleStage500'),art=el('img','titleArt500');art.src='assets/scenes/new-guild.webp';art.alt='';
- const shade=el('div','titleShade500'),brand=el('div','titleBrand500'),menu=el('div','titleMenu500'),version=el('small','titleVersion500','v5.04 · 길의 등불');
+ const shade=el('div','titleShade500'),brand=el('div','titleBrand500'),menu=el('div','titleMenu500'),version=el('small','titleVersion500','v5.05 · 길의 등불');
  brand.append(el('small','','ASTERIA CHRONICLES'),el('h1','','길의 등불'),el('p','','떠나는 사람에게 길을 밝히고, 돌아오는 사람에게 불을 밝혀 두리라.'));
  if(!settings){
   for(const b of actions)menu.append(b);
@@ -716,3 +716,26 @@ app.classList.toggle('finance504',!!finance);
 if(finance){const grid=finance.nextElementSibling,ledger=grid?.nextElementSibling;if(grid?.classList.contains('grid')&&ledger){const frame=document.createElement('div');frame.className='financeFrame504';const left=document.createElement('div');left.className='financeStats504';finance.before(frame);left.append(finance,grid);frame.append(left,ledger);}}
 const closed=body.querySelector('.townClosed494');if(closed){closed.parentElement.classList.add('closed504');const art=body.querySelector('.shopart419');if(art){for(const p of art.querySelectorAll('.portrait,button'))p.style.setProperty('display','none','important');}}
 };render()})();
+
+/* v5.05: discrete pages, no swipe tracks */
+(function(){
+const prev=render;
+function page(root,items,count){
+ if(!root||items.length<=count||root.dataset.paged505)return;
+ root.dataset.paged505='1';let index=0;const bar=document.createElement('div');bar.className='pageNav505';
+ const a=document.createElement('button'),b=document.createElement('button'),label=document.createElement('span');a.textContent='‹ 이전 페이지';b.textContent='다음 페이지 ›';a.type=b.type='button';bar.append(a,label,b);
+ root.after(bar);root.classList.add('paged505');
+ function draw(){items.forEach((e,i)=>{if(i>=index*count&&i<(index+1)*count)e.style.removeProperty('display');else e.style.setProperty('display','none','important')});label.textContent=(index+1)+' / '+Math.ceil(items.length/count);a.disabled=index===0;b.disabled=(index+1)*count>=items.length}
+ a.onclick=()=>{index--;draw()};b.onclick=()=>{index++;draw()};draw();
+}
+function apply(){
+ const app=document.querySelector('#app');if(!app)return;
+ for(const track of app.querySelectorAll('.lifeTrack498')){const panel=track.closest('.lifePanel498');panel?.querySelectorAll('.lifeArrow498').forEach(e=>e.remove());const clone=track.cloneNode(false);clone.className='staticTrack505';while(track.firstChild)clone.append(track.firstChild);const viewport=track.parentElement;viewport.replaceWith(clone);page(clone,[...clone.children],3)}
+ for(const grid of app.querySelectorAll('.shopGrid459')){const items=[...grid.querySelectorAll('.personalitem40')];if(!items.length)continue;const fresh=document.createElement('div');fresh.className='staticShop505';items.forEach(e=>{e.style.removeProperty('display');e.hidden=false;fresh.append(e)});grid.replaceWith(fresh);page(fresh,items,3)}
+ for(const e of app.querySelectorAll('.shopgoods419 .page420,.shopgoods419 [class*="Arrow"]'))e.remove();
+ const body=app.querySelector('.body474');if(!body)return;
+ const ledger=body.querySelector('.financeFrame504>.card');if(ledger){const logs=[...ledger.querySelectorAll('.log')];if(logs.length){const list=document.createElement('div');list.className='ledger505';ledger.append(list);logs.forEach(e=>list.append(e));page(list,logs,2)}}
+ for(const list of body.querySelectorAll('#member-list,.worldList503'))page(list,[...list.children].filter(e=>!e.hidden),list.id==='member-list'?4:4);
+}
+render=function(){prev();apply()};render();
+})();
