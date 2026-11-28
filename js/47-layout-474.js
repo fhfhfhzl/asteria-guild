@@ -14,7 +14,7 @@ function element(tag,cls,html){const x=document.createElement(tag);x.className=c
 function action(label,fn,icon){const b=element('button','nav474');b.type='button';if(icon){const i=element('img','');i.src='assets/ui/'+icon+'.webp';i.alt='';b.append(i)}b.append(element('span','',label));b.onclick=fn;return b}
 function panelTabs(){const t=element('div','tabs474');for(const [label,fn] of [['의뢰',()=>quest419('open')],['이벤트',()=>go('이야기')],['마을',()=>go('외출')],['기타',()=>go('더보기')]]){const b=action(label,fn);if((label==='의뢰'&&['길드','의뢰'].includes(screen))||(label==='이벤트'&&screen==='이야기')||(label==='마을'&&['외출','마을 교류'].includes(screen))||(label==='기타'&&screen==='더보기'))b.classList.add('active474');t.append(b)}return t}
 function freshPlan(){const p=element('section','plan40');p.append(element('h2','','월간 일정'));const w=element('div','weeks40');life34().schedule.forEach((v,i)=>{const l=element('label','');const b=action(esc(v)+' ▾',()=>pickSlot419(i));b.className='slot419';const im=element('img','activity43');im.src=scenes30[lifeActivities40[v]?.[1]||'guild'];im.alt='';l.append(im,element('small','',(i+1)+'주'),b);w.append(l)});p.append(w);const b=action('이번 달 시작 ▸',()=>{go('길드');begin34()});b.className='primary wide';p.append(b);return p}
-render=function(){original();const app=$('#app'),m=$('main');if(!app)return;app.classList.remove('layout474','detail475'); if(!state){const v=app.querySelector('.title small');if(v)v.textContent='v4.90 · 길의 등불';} orientation475();if(!state||!m||batch34||state.dialogue||state.final437)return;
+render=function(){original();const app=$('#app'),m=$('main');if(!app)return;app.classList.remove('layout474','detail475'); if(!state){const v=app.querySelector('.title small');if(v)v.textContent='v4.91 · 길의 등불';} orientation475();if(!state||!m||batch34||state.dialogue||state.final437)return;
 const home=screen==='길드',l=life34(),stage=m.querySelector('.stage43'),controls=m.querySelector('.controls43');if(home&&(!stage||!controls))return;
 const hero=stage?.querySelector('.lifehero40'),oldMeters=stage?.querySelector('.meters40');const bg=hero?.querySelector('.scene30')?.getAttribute('src')||'assets/scenes/new-guild.webp';
 const art=element('div','art474');if(hero){const j=hero.querySelector('.jia40');if(j)art.append(j);const label=hero.querySelector('.heroLabel40');if(label)art.append(label)}else{art.innerHTML='<div class="jia40 standing45">'+portrait('지아 메르벨')+'</div><div class="heroLabel40"><h1>지아 메르벨</h1><span>'+esc(guildStage433())+'</span><small>남은 기간 '+Math.max(0,1200-Math.floor(state.time/1440))+'일</small></div>'}
@@ -28,7 +28,7 @@ if(!bottom.children.length){const b=action(home?'월간 일정':'길드 · 월�
 const wallet=element('div','wallet474','<span>보유금</span> <strong>'+money(l.wallet)+'</strong>');panel.append(panelTabs(),body);right.append(wallet,panel,bottom);
 const left=element('div','left474');left.append(art,nav);m.replaceChildren(left,right);m.style.setProperty('--bg474','url("'+bg+'")');app.classList.add('layout474');app.classList.toggle('detail475',!home);
 const h=app.querySelector('header');if(h){const e=h.querySelector('.eyebrow');if(e){e.replaceChildren(element('div','brand474','<strong>길의 등불</strong><small>'+month40()+'</small>'));const links=element('div','header474');links.append(action('기록',()=>go('인생 기록')),action('생활',()=>lifePage424('요리')),action('설정',()=>go('더보기')));if(l.run||blocked34())links.querySelectorAll('button').forEach(b=>b.disabled=true);e.append(links)}h.querySelector('.hud')?.remove();}
-const version=app.querySelector('.title small');if(version)version.textContent='v4.90 · 길의 등불';
+const version=app.querySelector('.title small');if(version)version.textContent='v4.91 · 길의 등불';
 };render();
 })();
 
@@ -405,4 +405,50 @@ render=function(){
  const plan=app.querySelector('.plan40');if(plan&&app.classList.contains('planning477')&&!plan.querySelector('.schedulePreview490'))schedulePreview(plan);
 };
 render();
+})();
+
+/* v4.91: compact interactive onboarding, compatible with existing saves */
+(function(){
+const prev=render;
+let activeModal=null;
+const steps=[
+ ['길드에 오신 것을 환영합니다','저는 접수 담당 에린이에요. 홈에서는 의뢰 게시판, 월간 일정, 마을 교류, 길드 운영을 선택할 수 있어요. 위쪽의 보유금은 지아의 개인 재산이며 길드 운영 자금과 구분돼요.','홈 확인',()=>go('길드')],
+ ['첫 의뢰 선택','의뢰 게시판에서 낮은 난도의 의뢰를 선택하세요. 모험가의 체력과 피로를 확인하고 생존 우선 지침을 추천해요. 식량과 준비 비용을 확인한 뒤 파견을 확정하세요.','의뢰 게시판',()=>quest419('open')],
+ ['월간 일정','홈에서 월간 일정을 선택하면 4주 동안 할 일을 정할 수 있어요. 업무, 교육, 교류, 휴식을 적절히 섞어 보세요. 시작하면 시간이 진행되고 의뢰도 함께 처리돼요.','월간 일정',()=>{go('길드');const b=[...document.querySelectorAll('.cards477 button')].find(e=>e.textContent.includes('월간 일정'));if(b)b.click()}],
+ ['귀환과 긴급 사건','의뢰의 귀환·보고 탭에서 결과를 확인하세요. 실종이나 귀환 지연이 발생하면 구조를 검토해야 해요. 메일 아이콘에 빨간 점이 나타나면 확인할 사건이 있다는 뜻이에요.','귀환·보고',()=>quest419('active')],
+ ['직원과 대화','직원 메뉴에서 면담을 할 수 있어요. 한 번에 최대 세 가지 질문이 나타나며 대화와 선택에 따라 신뢰도와 관계가 달라져요.','직원 목록',()=>go('직원')],
+ ['모험가 영입과 길드 운영','길드 운영에서 모험가, 재정, 시설을 관리하세요. 모집한 모험가의 계약과 급여를 확인하고 운영 자금을 무리하게 쓰지 마세요.','길드 운영',()=>go('길드 운영')],
+ ['자유로운 길드 생활','마을에서는 주민과 교류하고 물건을 구할 수 있어요. 소지품에서 지아의 물건을 관리하며 설정에서 연대기와 저장 관리를 확인할 수 있어요. 이제 길드를 운영해 보세요.','마치기',()=>go('길드')]
+];
+function data(){return state.tutorial491??={step:0,started:false,done:false,hidden:false}}
+function make(tag,cls,t){const e=document.createElement(tag);e.className=cls||'';if(t!==undefined)e.textContent=t;return e}
+function button(t,fn){const b=make('button','',t);b.type='button';b.onclick=fn;return b}
+function close(){if(activeModal){const m=activeModal;activeModal=null;if(m.open)m.close();m.remove()}}
+function show(){
+ if(!state||state.dialogue||state.final437)return;
+ close();const d=data();d.started=true;d.hidden=false;d.step=Math.max(0,Math.min(steps.length-1,d.step));save();
+ const s=steps[d.step],m=make('dialog','tutorial491'),header=make('div','tutorialHead491'),layout=make('div','tutorialLayout491'),art=make('div','tutorialArt491'),info=make('div','tutorialInfo491'),actions=make('div','tutorialActions491');
+ header.append(make('strong','','길드장 안내 · '+(d.step+1)+' / '+steps.length),button('×',()=>{d.hidden=true;save();close();render()}));
+ art.innerHTML=bigArt419('에린 로웰');info.append(make('small','','에린 로웰'),make('h2','',s[0]),make('p','',s[1]));
+ layout.append(art,info);
+ const back=button('‹ 이전',()=>{d.step--;save();show()});back.disabled=d.step===0;
+ const skip=button('건너뛰기',()=>{d.hidden=true;save();close();render()});
+ const next=button(d.step===steps.length-1?'완료':'다음 ›',()=>{if(d.step===steps.length-1){d.done=true;d.hidden=true;save();close();render()}else{d.step++;save();show()}});
+ const visit=button(s[2],()=>{const last=d.step===steps.length-1;if(last){d.done=true;d.hidden=true}else d.step++;save();close();s[3]()});visit.className='primary';
+ actions.append(skip,back,next,visit);m.append(header,layout,actions);document.body.append(m);activeModal=m;
+ m.addEventListener('cancel',e=>{e.preventDefault();d.hidden=true;save();close();render()});m.showModal();
+}
+const oldToggle=tutorialToggle21;
+tutorialToggle21=function(v){if(!state)return;state.tutorial21.hidden=true;const d=data();if(v){d.hidden=true;save();close();render()}else{d.step=0;d.done=false;d.hidden=false;d.started=true;save();go('길드');show()}};
+tutorialPanel21=function(){return ''};
+render=function(){
+ prev();const app=$('#app');if(!state||!app||state.dialogue||state.final437||batch34)return;
+ const d=data();
+ const h=app.querySelector('header .eyebrow');
+ if(h&&!d.done&&!d.hidden){const b=button('?',show);b.className='tutorialHelp491';b.setAttribute('aria-label','길드장 튜토리얼');h.append(b)}
+ if(screen==='더보기'){const body=app.querySelector('.body474');if(body){const existing=[...body.querySelectorAll('button')].filter(b=>b.textContent.includes('튜토리얼 다시 표시'));existing.forEach(b=>b.remove());const b=button('튜토리얼 다시 시작',()=>tutorialToggle21(false));(body.querySelector('.quick477')||body).prepend(b)}}
+ if(state.introDone&&screen==='길드'&&!d.started&&!d.hidden&&!d.done&&!life34().run&&!blocked34()){
+  d.started=true;save();requestAnimationFrame(()=>{if(state&&screen==='길드'&&!state.dialogue&&!activeModal&&!data().hidden)show()});
+ }
+};render();
 })();
